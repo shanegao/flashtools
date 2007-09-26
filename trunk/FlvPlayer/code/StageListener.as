@@ -9,9 +9,10 @@ class StageListener {
 		Stage.scaleMode = "noScale";
 		Stage.showMenu = false ;
 		// create a new stage listener
-		var _this = this;
+		var _this:Object = this;
 		var lis:Object = new Object();
-		lis.onResize = function():Void  {
+		lis.onResize = function():Void  
+		{
 			var w:Number = Stage.width ;
 			var h:Number = Stage.height ;
 			//

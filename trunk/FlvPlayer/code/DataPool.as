@@ -19,7 +19,7 @@ class DataPool {
 	
 	public static var STAGE_WIDTH:Number = 500 ; 
 	public static var STAGE_HEIGHT:Number = 440 ;
-	public static var BG_COLOR:Number = 0x000000 ;
+	public static var BG_COLOR:Number = 0xFF3300 ;
 	
 	public static var FLV_DURATION:Number = 0;
 

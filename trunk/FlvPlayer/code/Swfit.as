@@ -14,7 +14,8 @@ class Swfit {
 	 *@param width:Number 宽
 	 *@param height:Number 长
 	 */
-	public static function drawRect(mc:MovieClip,col:Number,width:Number,height:Number):Void{
+	public static function drawRect(mc:MovieClip,col:Number,width:Number,height:Number):Void
+	{
 		mc.beginFill(col,100);
 		mc.moveTo(0,0);
 		mc.lineTo(0,height);
@@ -24,14 +25,17 @@ class Swfit {
 		mc.endFill();
 	}
 	
-	public static function formatTime(second:Number):String{
+	public static function formatTime(second:Number):String
+	{
     	var minutes:Number = Math.floor(second/60);
     	var seconds:Number = Math.floor(second%60);
     	var secondStr:String = "";
-   		if (seconds<10) {
+   		if (seconds<10) 
+   		{
    	 		secondStr = "0"+seconds;
     	}
-    	else{	
+    	else
+    	{	
     		secondStr = seconds.toString();
     	}
 		return minutes.toString() +":"+ secondStr ;
