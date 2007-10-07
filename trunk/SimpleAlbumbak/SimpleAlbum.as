@@ -18,7 +18,7 @@ package {
 		{
 			var xmlLdr:URLLoader = new URLLoader();
 			xmlLdr.addEventListener(Event.COMPLETE, completeHandler);
-			xmlLdr.load(new URLRequest("../images/gallery_tween.xml"));
+			xmlLdr.load(new URLRequest("images/gallery_tween.xml"));
 		}
 		
 		private function completeHandler(event:Event):void 
@@ -49,8 +49,8 @@ package {
 			// loop through each of the images in the gallery_array.
 			for (i = 0; i<galleryLength; i++) 
 			{
-				
-				var photo:Photo = new Photo(listAll[i].src,"photo"+i);
+				var src:String = "images/" + listAll[i].src ;
+				var photo:Photo = new Photo(src,"photo"+i);
 				photo.x = thisX;
 				photo.y = thisY;
 				addChild(photo);
