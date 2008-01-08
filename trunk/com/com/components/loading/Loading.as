@@ -1,6 +1,6 @@
 ﻿import flash.geom.ColorTransform;
 import flash.geom.Transform;
-class com.qihoo.components.Loading extends MovieClip
+class com.components.loading.Loading extends MovieClip
 {
 	public var loading : MovieClip ;
 	public var loadingBG  :MovieClip ;
@@ -48,7 +48,7 @@ class com.qihoo.components.Loading extends MovieClip
 	{
 		if (_b == null) 
 			_b = false ;
-		_show = _b ; x
+		_show = _b ; 
 		if (_show)
 			showTextInfo();
 		else
@@ -121,7 +121,36 @@ class com.qihoo.components.Loading extends MovieClip
 	{
 		return _colorObj  ;
 	}
+	//
+	/*
+	[Inspectable(defaultValue=100 ; type="Number" )]
+	public function set width(_w:Number):Void
+	{
+		if (isNaN(_w))
+			_w = 0 ;
+		_width = _w ;	
+		loadingBG._width = _w ;
+		update();
+	}
+	public function get width():Number
+	{
+		return _width ;
+	}
+	[Inspectable(defaultValue=12 ; type="Number" )]
+	public function set height(_h:Number):Void
+	{
+		if (isNaN(_h))
+			_h = 0 ;
+		_height = _h ;
+		loadingBG._height = _h ;
+		loading._height   = _h -2;
+	}
 	
+	public function get height() :Number
+	{
+		return _height ;
+	}
+	*/
 	//show the TEXT infomation 
 	public function showTextInfo():Void
 	{
@@ -139,7 +168,7 @@ class com.qihoo.components.Loading extends MovieClip
 	}
 	private function update():Void
 	{
-		loading._width = _lp * loadingBG._width *.01 ;
+		loading._width = _lp * loadingBG._width *.01 - 2;
 	}
 	private function setColor(mc:MovieClip , col:Number) :Void
 	{
@@ -150,4 +179,6 @@ class com.qihoo.components.Loading extends MovieClip
 		var trans:Transform = new Transform(mc);
 		trans.colorTransform = ctrans ;
 	}
+	
+
 }
