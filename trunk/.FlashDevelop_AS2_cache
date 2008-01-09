@@ -1,5 +1,0 @@
-
-#file-cache E:\SRC\com\qihoo\test\Test.as
-public class com.qihoo.test.Test extends Object{public function Test ();}
-#file-cache E:\SRC\com\qihoo\test\Loading.as
-public class com.qihoo.test.Loading extends MovieClip{public var loading : MovieClip;public var loadingBG : MovieClip;private var _lp : Number;public function set loadPrecent (_num:Number) : Void;public function get loadPrecent () : Number;public function Loadding ();private function initLoading () : Void;private function update () : Void;}
