@@ -1,6 +1,6 @@
 ﻿import mx.events.EventDispatcher;
 import mx.utils.Delegate;
-class VSlider extends MovieClip
+class code.components.silder.VSlider extends MovieClip
 {
 	private var dragBar : MovieClip ;
 	private var scopeMC : MovieClip ;
@@ -21,7 +21,7 @@ class VSlider extends MovieClip
 		EventDispatcher.initialize(this);
 		init();
 	}
-	//init 
+	//init a
 	private function init():Void
 	{
 		//

@@ -1,6 +1,6 @@
 ﻿import mx.events.EventDispatcher ;
 import mx.utils.Delegate ;
-import com.core.events.LoadEvent ;
+import code.core.events.LoadEvent ;
 /**
 * ...
 * convert xml to object 
@@ -15,7 +15,7 @@ import com.core.events.LoadEvent ;
 [Event("onLoadPregress")]
 [Event("onLoadError")]
 
-class com.core.xml.XMLLoader 
+class code.core.xml.XMLLoader 
 {
 	
 	private var xmlPath  :String;

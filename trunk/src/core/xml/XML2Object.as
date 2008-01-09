@@ -4,7 +4,7 @@
 * @version 0.1
 */
 
-class com.core.xml.XML2Object {
+class code.core.xml.XML2Object {
 
 	public function XML2Object() 
 	{

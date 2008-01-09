@@ -1,6 +1,6 @@
 ﻿//这个类位于mx.events中.需要在使用前导入
 import mx.events.EventDispatcher;
-class ImageLoader {
+class code.core.loader.ImageLoader {
 	//定义几个常量来表示事件类型
 	public static  var COMPLETE:String  = "complete";
 	public static  var PROGRESS:String = "progress";

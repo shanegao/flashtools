@@ -1,6 +1,6 @@
 ﻿import mx.events.EventDispatcher;
 import mx.utils.Delegate;
-class HSlider extends MovieClip
+class code.components.silder.HSlider extends MovieClip 
 {
 	private var dragBar : MovieClip ;
 	private var scopeMC : MovieClip ;
@@ -24,8 +24,6 @@ class HSlider extends MovieClip
 	//init 
 	private function init():Void
 	{
-		//
-		
 		//trace("init") ;
 		initDragBar();
 		initScope();

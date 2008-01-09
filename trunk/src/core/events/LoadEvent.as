@@ -5,7 +5,7 @@
 * @version 0.1
 */
 
-class com.core.events.LoadEvent {
+class code.core.events.LoadEvent {
 
 	public static var LOAD_START     : String = "onLoadStart" ;
 	public static var LOAD_ERROR     : String = "onLoadError" ;
