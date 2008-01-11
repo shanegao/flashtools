@@ -114,7 +114,8 @@ class code.core.xml.XMLLoader
 	{
 		var event:Object = { };
 		event.type   = type ;
-		event.target = xml ;
+		event.xmlData= xml	  ;
+		event.target = this ;
 		dispatchEvent(event);
 	}
 }
