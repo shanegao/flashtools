@@ -1,6 +1,6 @@
 ﻿import flash.geom.ColorTransform;
 import flash.geom.Transform;
-class code.components.loading.Loading extends MovieClip
+class components.loading.Loading extends MovieClip
 {
 	public var loading : MovieClip ;
 	public var loadingBG  :MovieClip ;
