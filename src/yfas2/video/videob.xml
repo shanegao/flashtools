@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<video>
+  <video-config>
+    <title><![CDATA[ Copyright 2005 PBlog2 v2.4]]></title>
+    <desc><![CDATA[ Copyright 2005 PBlog2 v2.4]]></desc>
+    <comment>xxx.xml</comment>
+    <thumb>xxx.jpg</thumb>
+    <path>D:\works\flashTools\FlvPlayer\flv</path>
+  </video-config>
+   <video-config>
+    <title><![CDATA[ Copyright 2005 PBlog2 v2.4]]></title>
+    <desc><![CDATA[ Copyright 2005 PBlog2 v2.4]]></desc>
+    <comment>xxx.xml</comment>
+    <thumb>xxx.jpg</thumb>
+    <path>xxx.flv</path>
+  </video-config>
+  <video-config>
+    <title><![CDATA[ Copyright 2005 PBlog2 v2.4]]></title>
+    <desc><![CDATA[ Copyright 2005 PBlog2 v2.4]]></desc>
+    <comment>xxx.xml</comment>
+    <thumb>xxx.jpg</thumb>
+    <path>xxx.flv</path>
+  </video-config>
+  <video-config>
+    <title><![CDATA[ Copyright 2005 PBlog2 v2.4]]></title>
+    <desc><![CDATA[ Copyright 2005 PBlog2 v2.4]]></desc>
+    <comment>xxx.xml</comment>
+    <thumb>xxx.jpg</thumb>
+    <path>xxx.flv</path>
+  </video-config>
+</video>
