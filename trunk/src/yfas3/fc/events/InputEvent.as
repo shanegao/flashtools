@@ -2,6 +2,7 @@ package fc.events
 {
 	import flash.events.Event;
 	/**
+	 * 文本输入事件
 	 * @author GaoXian
 	 */
 	public class InputEvent extends Event 
