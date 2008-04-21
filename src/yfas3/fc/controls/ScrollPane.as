@@ -1,6 +1,7 @@
-﻿package fc.controls {
+﻿package fc.controls 
+{
+	import flash.display.DisplayObject;	
 	import flash.events.MouseEvent;	
-	import flash.display.Bitmap;	
 	import flash.display.Sprite;
 	/**
 	 * @author GaoXian
@@ -10,13 +11,15 @@
 	{
 		private var sWidth : Number ;
 		private var sHeight : Number ; 
-		
+		public var bgMc : Sprite ; 
 		private var maskMc : Sprite ;
 		private var contentMc : Sprite ;  
-		private var _content : Bitmap ; 
-		
+		private var _content : DisplayObject ; 
+
 		private var startX : Number ; 
 		private var startY : Number ; 
+		private var enableMoveV : Boolean ; 
+		private var enableMoveH : Boolean ; 
 		/**
 		 * 构造函数
 		 */
@@ -31,8 +34,13 @@
 		 */
 		private function initView() : void
 		{
+			bgMc = new Sprite();
+			bgMc.graphics.beginFill(0x999999) ; 
+			bgMc.graphics.drawRect(0, 0, sWidth, sHeight);
+			bgMc.graphics.endFill() ;
+			addChild(bgMc);
 			contentMc = new Sprite();
-			setEvent(contentMc);
+			contentMc.name = "contentMc";
 			maskMc = new Sprite();
 			maskMc.graphics.beginFill(0xff0000) ; 
 			maskMc.graphics.drawRect(0, 0, sWidth, sHeight);
@@ -54,12 +62,12 @@
 		 */
 		private function onDown(evt  : MouseEvent) : void
 		{
-			var t : Sprite = Sprite(evt.currentTarget) ; 
+			var t : Sprite = Sprite(evt.target) ; 
 			t.addEventListener(MouseEvent.MOUSE_MOVE, onMove) ;
 			startX = evt.localX ; 
 			startY = evt.localY ; 
 			trace("onDown : "  +((parent !=null)));
-			if(this.stage !=null)this.stage.addEventListener(MouseEvent.MOUSE_UP, onUpOutside) ; 
+			if(this.stage !=null) this.stage.addEventListener(MouseEvent.MOUSE_UP, onUpOutside) ; 
 		}
 
 		/**
@@ -67,11 +75,26 @@
 		 */
 		private function onMove(evt : MouseEvent) : void
 		{
-			var t : Sprite = evt.currentTarget as Sprite ;
-			t.x += evt.localX - startX ; 
-			t.y += evt.localY - startY ;
-			evt.updateAfterEvent() ;
-			//t.startDrag();
+			
+			if(evt.currentTarget == contentMc)
+			{
+				trace("onMove. " + evt.currentTarget);
+				var t : Sprite = evt.currentTarget as Sprite ;
+				if(enableMoveV) 
+				{
+					t.x += evt.localX - startX ; 
+					if(t.x >= 0)t.x = 0 ;
+					if(t.x <= t.width - bgMc.width) t.x = t.width - bgMc.width ;
+				}
+				if(enableMoveH)
+				{
+					t.y += evt.localY - startY ;
+					if(t.y >= 0) t.y = 0 ;
+					if(t.y <=  bgMc.height- t.height ) t.y = bgMc.height- t.height;
+				}
+				evt.updateAfterEvent() ;
+			}
+	
 		}
 		/**
 		 * 鼠标松开
@@ -82,15 +105,17 @@
 			t.removeEventListener(MouseEvent.MOUSE_MOVE, onMove) ;
 			//t.stopDrag();
 		}
+		/**
+		 * onReleaseOutside
+		 * 在目标外松开鼠标
+		 */
 		private function onUpOutside(evt : MouseEvent) : void
 		{
 			trace("onUpOutside----------")  ;
-			
 			var t : Sprite = evt.target as Sprite ;
 			if(t == contentMc)	
 			{
-				trace("onUpOutside : "+(t == parent));
-				
+				trace("in : "+(t == contentMc));
 			}
 			else
 			{
@@ -101,15 +126,24 @@
 		/**
 		 * set 图像
 		 */
-		public function set content(__content : Bitmap) : void
+		public function set content(__content : DisplayObject) : void
 		{
+			if(_content!=null && contains(_content)) contentMc.removeChild(_content) ;
 			_content = __content ; 
 			contentMc.addChild(_content); 
-			_content.x = (sWidth - _content.width) * .5;
-			_content.y = (sHeight -_content.height) *.5 ; 
+			contentMc.x = (sWidth - contentMc.width) * .5;
+			contentMc.y = (sHeight - contentMc.height) *.5 ; 
+			enableMoveV = _content.width > bgMc.width ; 
+			enableMoveH = _content.height > bgMc.height ; 
 			contentMc.mask = maskMc ; 
+			setEvent(contentMc);
 		} 
-		 
-		
+		/**
+		 * get 图像
+		 */
+		public function get content() : DisplayObject
+		{
+			return _content ; 
+		}  
 	}
 }
