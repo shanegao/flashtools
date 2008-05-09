@@ -13,7 +13,7 @@
 	 * 加载SWF文件 , 类
 	 * @author Gaoxian
 	 */ 
-	public class SWFLoader extends LoaderObject 
+	public class DisplayLoader extends LoaderObject 
 	{
 		private var _swfLib : String ;
 		private var _loader : Loader ;
@@ -24,12 +24,11 @@
 		/**
 		 * 构造函数
 		 */
-		public function SWFLoader(URL : String = null , isClass:Boolean = false) 
+		public function DisplayLoader(URL : String = null) 
 	    {
 	    	if(URL!=null)
 	    	{
 	    		if(URL == "")throw new Error(Errors.URLisEmpty);
-	    		is_class = isClass ;
 	    		_swfLib = URL ;
 				load();
 	    	}
@@ -43,6 +42,7 @@
 			is_class = isClass ;
 			load();
 		}
+		
 		private function load():void
 		{
 			_loaded = false;
