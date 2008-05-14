@@ -1,13 +1,15 @@
-﻿package fc.net {
-	import fc.utils.Debug;	
-	import fc.events.UploadEvent;	
-	import fc.errors.Errors;	
-	
+﻿package fc.net 
+{
 	import flash.events.*;
+	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	import flash.net.FileReferenceList;
-	import flash.net.FileFilter;
 	import flash.net.URLRequest;
+	
+	import fc.errors.Errors;
+	import fc.events.UploadEvent;
+	import fc.utils.Debug;		
+
 	/**
 	 * 批量上传图
 	 * @author GaoXian

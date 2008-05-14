@@ -1,11 +1,12 @@
 package fc.net 
 {
-	import fc.errors.Errors;	
-	
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	import flash.events.Event;
-	import flash.net.URLLoaderDataFormat;	
+	import flash.net.URLLoader;
+	import flash.net.URLLoaderDataFormat;
+	import flash.net.URLRequest;
+	
+	import fc.errors.Errors;		
+
 	/**
 	 * 加载文本
 	 * @author GaoXian

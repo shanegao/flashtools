@@ -1,10 +1,11 @@
-﻿package fc.net {
-	import fc.errors.Errors;	
-	
+﻿package fc.net 
+{
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import flash.net.URLRequestMethod;	
+	import flash.net.URLRequestMethod;
+	
+	import fc.errors.Errors;		
 
 	/**
 	 * 此类用于加载xml格式的文
