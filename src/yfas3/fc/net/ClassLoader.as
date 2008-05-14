@@ -1,13 +1,15 @@
-package fc.net {
-	import flash.events.Event;	
-	import flash.errors.IllegalOperationError;	
-	import flash.system.ApplicationDomain;	
-	import flash.system.LoaderContext;	
-	import flash.net.URLRequest;	
-	import flash.display.Loader;	
+package fc.net 
+{
+	import flash.display.Loader;
+	import flash.errors.IllegalOperationError;
+	import flash.events.Event;
+	import flash.net.URLRequest;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
 	
-	import fc.errors.Errors;	
-	import fc.net.LoaderObject;
+	import fc.errors.Errors;
+	import fc.net.LoaderObject;		
+
 	/**
 	 * @author GaoXian
 	 * @date  2008-5-9

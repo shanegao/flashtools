@@ -1,13 +1,14 @@
 package fc.net 
 {
-	import fc.events.LoadEvent;	
-
-	import flash.events.SecurityErrorEvent;	
-	import flash.events.HTTPStatusEvent;	
-	import flash.events.EventDispatcher;
 	import flash.events.Event;
-	import flash.events.ProgressEvent;
+	import flash.events.EventDispatcher;
+	import flash.events.HTTPStatusEvent;
 	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.events.SecurityErrorEvent;
+	
+	import fc.events.LoadEvent;		
+
 	/**
 	 * 
 	 * @author GaoXian

@@ -1,13 +1,13 @@
 ﻿package fc.net 
 {
-	import fc.errors.Errors;	
-	
-	import flash.net.URLRequest;	
+	import flash.display.Loader;
 	import flash.errors.IllegalOperationError;
+	import flash.events.Event;
+	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
-	import flash.display.Loader;
-	import flash.events.Event;	
+	
+	import fc.errors.Errors;		
 
 	/**
 	 * 加载SWF文件 , 类
