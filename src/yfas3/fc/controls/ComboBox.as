@@ -1,8 +1,8 @@
 ﻿package fc.controls 
 {
 	import fc.events.ComboBoxEvent;	
-	import fc.controls.comboBox.ComboBoxItem;	
-	import fc.controls.comboBox.ComboBoxMainUI;	
+	import fc.controls.comboBoxClass.ComboBoxItem;	
+	import fc.controls.comboBoxClass.ComboBoxMainUI;	
 	
 	import flash.events.Event;	
 	import flash.events.MouseEvent;	
