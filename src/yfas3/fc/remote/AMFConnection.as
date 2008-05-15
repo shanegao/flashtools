@@ -69,11 +69,12 @@ package fc.remote
 			_failResult = fault ;
 			sendEvent(LoadEvent.LOAD_FAILED);
 		}
-		
+		/**
+		 * 发送事件
+		 */
 		private function sendEvent(type : String) : void
 		{
-			var e : LoadEvent = new LoadEvent(type) ;
-			dispatchEvent(e);
+			dispatchEvent(new LoadEvent(type));
 		}
 		/**
 		* Get function for _gateway.
