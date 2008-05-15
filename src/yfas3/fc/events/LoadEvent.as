@@ -10,6 +10,10 @@
 	public class LoadEvent extends Event 
 	{
 		/**
+		 * 当加载开始时
+		 */
+		public static const LOAD_START : String = "loadStart";
+		/**
 		* 当加载成功时触发
 		*/		
 		public static const LOAD_SUCCESS:String = "loadSuccess";

@@ -1,12 +1,11 @@
-package fc.remote {
-	import fc.events.LoadEvent;	
-	
-	import flash.events.Event;	
+package fc.remote 
+{
 	import flash.events.EventDispatcher;
 	import flash.net.NetConnection;
 	import flash.net.Responder;
 	
-	import fc.errors.Errors;		
+	import fc.errors.Errors;
+	import fc.events.LoadEvent;		
 
 	/**
 	 * @author GaoXian
@@ -51,6 +50,7 @@ package fc.remote {
 		 */
 		public function call(command : String,...args):void 
 		{
+			sendEvent(LoadEvent.LOAD_START);
 			connection.call(command, responder , args);
 		}
 		/**
@@ -58,16 +58,16 @@ package fc.remote {
 		 */
 		private function onResult(result:Object):void 
 		{
-			_result = String(result);
-			sendEvent(LoadEvent.LOAD_FAILED) ;
+			_result = result;
+			sendEvent(LoadEvent.LOAD_SUCCESS) ;
 		}
 		/**
 		 * 失败
 		 */
 		private function onFault(fault:Object):void 
 		{
-			_failResult = String(fault.description);
-			sendEvent(LoadEvent.LOAD_SUCCESS);
+			_failResult = fault ;
+			sendEvent(LoadEvent.LOAD_FAILED);
 		}
 		
 		private function sendEvent(type : String) : void
