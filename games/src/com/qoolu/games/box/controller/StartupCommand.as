@@ -11,7 +11,7 @@ package com.qoolu.games.box.controller {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.model.SpriteDataProxy;	
+	import com.qoolu.games.box.model.GameDataProxy;		
 
 	public class StartupCommand extends SimpleCommand implements ICommand
     {
@@ -23,7 +23,7 @@ package com.qoolu.games.box.controller {
          */
         override public function execute( note:INotification ) : void    
         {
-			facade.registerProxy(new SpriteDataProxy());
+			facade.registerProxy(new GameDataProxy());
 	    	var stage:Stage = note.getBody() as Stage;
             //facade.registerMediator( new StageMediator( stage ) );
 			sendNotification( ApplicationFacade.STAGE_ADD_SPRITE );

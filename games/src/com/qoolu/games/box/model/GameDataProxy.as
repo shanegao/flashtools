@@ -8,11 +8,11 @@ package com.qoolu.games.box.model
 	import org.puremvc.as3.interfaces.IProxy;
     import org.puremvc.as3.patterns.proxy.Proxy;
 
-    public class SpriteDataProxy extends Proxy implements IProxy
+    public class GameDataProxy extends Proxy implements IProxy
     {
-        public static const NAME:String = 'SpriteDataProxy';
+        public static const NAME:String = 'GameDataProxy';
 
-        public function SpriteDataProxy( )
+        public function GameDataProxy( )
         {
             super( NAME, Number(0) );
 			palette = [ blue, red, yellow, green, cyan ];
@@ -42,25 +42,6 @@ package com.qoolu.games.box.model
 			//return startColor;
 			return palette[index];
 			
-		}
-		
-	    /**
-		 * Get the next Sprite ID
-		 */
-		public function get nextSpriteID():String{
-			return "sprite"+spriteCount++;
-		}
-		
-		/**
-		 * Get the next Sprite ID
-		 */
-		public function get spriteCount():Number{
-			return data as Number;
-		}
-		
-		public function set spriteCount(count:Number):void
-		{
-			data = count;
 		}
 		
      }
