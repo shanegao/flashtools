@@ -14,7 +14,7 @@ package com.qoolu.games.box {
         // Notification name constants
         public static const STARTUP:String  		= "startup";
         public static const TIME_OVER:String	= "timeOver";
-        public static const SPRITE_SCALE:String 	= "spriteScale";
+        public static const UPGRADE:String 	= "spriteScale";
 		public static const SPRITE_DROP:String		= "spriteDrop";
 
 		/**

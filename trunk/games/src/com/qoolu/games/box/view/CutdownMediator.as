@@ -59,7 +59,7 @@ package com.qoolu.games.box.view {
             switch (note.getName() ) 
             {
                 case ApplicationFacade.TIME_OVER : 
-                
+                //do somethings ....
                 break ;
             }
         }
