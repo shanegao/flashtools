@@ -5,7 +5,7 @@ package com.qoolu.games.box.view.components {
 	import flash.display.MovieClip;
 	
 	/**
-	 * @author Sam
+	 * @author Gaoxian
 	 */
 	public class CutdownTimer extends MovieClip 
 	{
