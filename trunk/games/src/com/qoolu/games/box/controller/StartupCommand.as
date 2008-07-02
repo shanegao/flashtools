@@ -26,7 +26,7 @@ package com.qoolu.games.box.controller {
 			facade.registerProxy(new LevelDataProxy());
 	    	var stage:Stage = note.getBody() as Stage;
             //facade.registerMediator( new StageMediator( stage ) );
-			sendNotification( ApplicationFacade.STAGE_ADD_SPRITE );
+			//sendNotification( ApplicationFacade.STAGE_ADD_SPRITE );
         }
     }
 }

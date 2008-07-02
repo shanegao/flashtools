@@ -1,13 +1,13 @@
 package com.qoolu.games.box.view {
-	import com.qoolu.games.box.ApplicationFacade;	
+	import flash.events.Event;
 	
-	import org.puremvc.as3.interfaces.INotification;	
-	
-	import flash.events.Event;	
-	
-	import org.puremvc.as3.patterns.mediator.Mediator;
 	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import com.qoolu.games.box.ApplicationFacade;
+	import com.qoolu.games.box.view.components.CutdownTimer;		
+
 	/**
 	 * @author Gaoxian
 	 */
