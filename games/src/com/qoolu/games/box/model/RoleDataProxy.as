@@ -45,15 +45,15 @@ package com.qoolu.games.box.model
 		 */
 		private function fetchUniqItem(src :Array , num : int) : Array
 		{
-			var arr : Array = [] ;
-			for(var i :int = 0 ; i <num ; i++)
+			var targetArr : Array = src.concat() ;
+			var arr : Array = [];
+			for (var i :int = 0; i <num; i++) 
 			{
-				var index : int = Math.floor(Math.random() * src.length) ;
-				arr.push(src[index]);
-				src.slice(index,1);
+				var index : int = Math.floor(Math.random() * targetArr.length);
+				arr.push(targetArr[index]);
+				targetArr.splice(index,1);
 			}
-			
-			return arr ;
+			return arr;
 		}
 	}
 }
