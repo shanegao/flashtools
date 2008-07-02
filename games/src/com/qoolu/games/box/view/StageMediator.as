@@ -1,4 +1,8 @@
 package com.qoolu.games.box.view {
+	import org.puremvc.as3.interfaces.INotification;	
+	
+	import com.qoolu.games.box.ApplicationFacade;	
+	
 	import flash.display.Stage;	
 	
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -12,7 +16,7 @@ package com.qoolu.games.box.view {
 	{
 		 public static const NAME:String = 'StageMediator';
         /**
-         * Constructor. 
+         * Constructor 
          */
 		public function StageMediator(viewComponent : Object) 
 		{
@@ -28,5 +32,23 @@ package com.qoolu.games.box.view {
 		{
             return viewComponent as Stage;
 		}
+		
+		override public function listNotificationInterests():Array 
+        {
+            return [
+            		 ApplicationFacade.STARTUP
+            	   ];
+        }
+        
+        
+        override public function handleNotification( note : INotification ) : void 
+        {
+            switch (note.getName() ) 
+            {
+                case ApplicationFacade.STARTUP : 
+                	//do somethings ...
+                	break ;
+            }
+        }
 	}
 }
