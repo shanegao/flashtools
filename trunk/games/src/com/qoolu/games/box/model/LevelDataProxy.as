@@ -10,7 +10,7 @@
     {
         public static const NAME:String = 'LevelDataProxy';
         
-		public static var CURRENT_LEVEL : int = 10 ;
+		private var _level : int = 1 ;
         
         public function LevelDataProxy( )
         {
@@ -26,12 +26,12 @@
 		 */
 		 public function numOfBox() : Array
 		 {
-		 	if(CURRENT_LEVEL == 1) return [5 , 5] ;
-		 	if(CURRENT_LEVEL == 2) return [8 , 8] ;
-		 	if(CURRENT_LEVEL == 3) return [10 ,10] ;
-		 	if(CURRENT_LEVEL == 4) return [12 , 12] ;
-		 	if(CURRENT_LEVEL > 4) return [16 , 16];
-		 	return [5,5]
+		 	if(_level == 1) return [5 , 5] ;
+		 	if(_level == 2) return [8 , 8] ;
+		 	if(_level == 3) return [10 ,10] ;
+		 	if(_level == 4) return [12 , 12] ;
+		 	if(_level > 4) return [16 , 16];
+		 	return [5,5];
 		 }
 		/**
 		 * 第一关两种颜色
@@ -44,38 +44,31 @@
 		 */ 
 		public function numOfRole() : int
 		{
-			if(CURRENT_LEVEL == 1 || CURRENT_LEVEL == 2) return 2 ;
-			if(CURRENT_LEVEL == 3) return 3 ;
-			if(CURRENT_LEVEL == 4) return 4 ;
-			if(CURRENT_LEVEL == 5) return 5 ;
-			if(CURRENT_LEVEL == 6) return 6 ;
-			if(CURRENT_LEVEL > 6) return 8 ;
+			if(_level == 1 || _level == 2) return 2 ;
+			if(_level == 3) return 3 ;
+			if(_level == 4) return 4 ;
+			if(_level == 5) return 5 ;
+			if(_level == 6) return 6 ;
+			if(_level > 6) return 8 ;
 			return 2 ;
     	}
     	/**
-    	 * 
-    	 * 4.记分规则
-		 *	每次消4×4个方块以下（包括4×4），每消1个方块得2分
-		 *	每次消8×8个方块以下（包括8×8），每消1个方块得5分
-		 *	每次消12×12个方块以下（包括12×12），每消1个方块得10分
-		 *	每次消16×16个方块以下（包括16×16），每消1个方块得50分
-		 *	
+    	 * 得到当前级别 getter --b
     	 */
-    	 
-    	 public function scoreOfFight(numW : int , numH :int ) : int
-    	 {
-    	 	if(numW<= 4 ||numH <= 4) return 2 ;
-    	 	if(numW<= 8 ||numH <= 8) return 5 ;
-    	 	if(numW<= 12 || numH <= 12) return 10 ;
-    	 	if(numW<= 16 || numH <= 16) return 50 ;
-    	 	return 2 ;
-    	 }
-    	/**
-    	 * 得到当前级别
-    	 */
-    	public function get nextLevel() : int 
+    	public function get level() : int 
     	{
-			return ++ CURRENT_LEVEL ;
+			return _level ;
+		}
+		/**
+		 * setter
+		 */
+		public function set level( _l:int ) : void
+		{
+			_level = _l ;
+		}
+		public function levelAdd() :void
+		{
+			_level ++ ;
 		}
     }
 }

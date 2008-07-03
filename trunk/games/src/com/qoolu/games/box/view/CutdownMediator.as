@@ -37,7 +37,8 @@ package com.qoolu.games.box.view {
         private function onTimeOver(evt : Event) : void
         {
         	trace("onTimeOver") ;
-        	sendNotification(ApplicationFacade.GAME_OVER);
+        	sendNotification(ApplicationFacade.UPGRADE);
+        	//sendNotification(ApplicationFacade.GAME_OVER);
         }
 		/**
 		 * 得到实例

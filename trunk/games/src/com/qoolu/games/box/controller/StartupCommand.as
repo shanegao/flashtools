@@ -1,4 +1,6 @@
 ﻿package com.qoolu.games.box.controller {
+	import com.qoolu.games.box.model.ScoreDataProxy;	
+	import com.qoolu.games.box.model.RoleDataProxy;	
 	import com.qoolu.games.box.ApplicationFacade;	
 	import com.qoolu.games.box.view.StageMediator;	
 	import com.qoolu.games.box.model.LevelDataProxy;	
@@ -24,12 +26,14 @@
 			//
 			var stage : Stage = note.getBody() as Stage ;
 			facade.registerProxy(new LevelDataProxy()) ;
+			facade.registerProxy(new RoleDataProxy()) ;
+			facade.registerProxy(new ScoreDataProxy()) ;
 			//
 			//note
 			facade.registerMediator(new StageMediator(stage));
 			//facade.removeMediator(StageMediator.NAME);
-			sendNotification(ApplicationFacade.DEPLOY_UI);
-			
+			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
+			sendNotification(ApplicationFacade.DEPLOY_UI, levelData.level);
 		}
 	}
 }
