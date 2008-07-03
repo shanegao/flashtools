@@ -1,9 +1,11 @@
 package com.qoolu.games.box.controller {
+	import com.qoolu.games.box.model.LevelDataProxy;	
+	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import com.qoolu.games.box.model.LevelDataProxy;		
+	import com.qoolu.games.box.ApplicationFacade;		
 
 	/**
 	 * @author Gaoxian
@@ -16,7 +18,9 @@ package com.qoolu.games.box.controller {
 		 */
 		override public function execute(note : INotification) : void 
 		{
-			facade.registerProxy(new LevelDataProxy());
+			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy;
+			levelData.levelAdd();
+			sendNotification(ApplicationFacade.DEPLOY_UI, levelData.level);
 		}
 	}
 }

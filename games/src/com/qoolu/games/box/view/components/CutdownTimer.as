@@ -24,7 +24,7 @@ package com.qoolu.games.box.view.components {
 		//
 		private var offsetX : Number = 5 ;
 		private var totalTime : Number = 0 ;
-		private var timer : Timer ;
+		private static var timer : Timer ;
 		public var precent : Number = 0 ;
 		public function CutdownTimer() 
 		{
@@ -38,6 +38,7 @@ package com.qoolu.games.box.view.components {
 		{
 			if(_totalTime == 0)return ;
 			nowTime = totalTime = _totalTime ;
+			if(timer != null) timer.stop();
 			timer = new Timer(ONESECOND, totalTime);
 			timer.addEventListener(TimerEvent.TIMER, running);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, over);

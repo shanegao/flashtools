@@ -9,9 +9,9 @@ package com.qoolu.games.box.view.components {
 	{
 		//private var container : Sprite ;
 
-		public function BoxesUI(nums : Object)
+		public function BoxesUI(nums : Object, roles:Object)
 		{
-			trace("BoxesUI  : "  +nums);
+			trace("BoxesUI  : "  +nums , roles);
 			var wNum : int = nums[0] as int ;
 			var hNum : int = nums[1] as int;
 			for(var i : int = 0 ; i <wNum ; i++)

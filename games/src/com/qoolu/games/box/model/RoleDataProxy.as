@@ -30,13 +30,11 @@ package com.qoolu.games.box.model
 		/**
 		 * 得到当前级别的角色个数
 		 */
-		public function rolesInCurrentLevel () : Array
+		public function rolesInCurrentLevel (numOfRole : int) : Array
 		{
-			var arr : Array =[] ;
-			var levelData : LevelDataProxy = new LevelDataProxy() ; 
-			var num :int = levelData.numOfRole();
-			arr = fetchUniqItem(roleArray, num);
-			return arr ;
+			//var levelData : LevelDataProxy = new LevelDataProxy() ; 
+			//var num :int = levelData.numOfRole();
+			return fetchUniqItem(roleArray, numOfRole);
 		} 
 		/**
 		 * 在目标数组中，取出指定个数不重复索引的元素。。。。
