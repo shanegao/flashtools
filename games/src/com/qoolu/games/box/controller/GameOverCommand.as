@@ -2,7 +2,7 @@ package com.qoolu.games.box.controller {
 	import org.puremvc.as3.interfaces.INotification;	
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	import org.puremvc.as3.interfaces.ICommand;
-	
+
 	/**
 	 * @author Gaoxian
 	 * 游戏结束命令
@@ -14,7 +14,8 @@ package com.qoolu.games.box.controller {
 		 */
 		override public function execute(note : INotification) : void 
 		{
-			
+			//facade.registerMediator()
+			trace("Game over @ GameOverCommand " );
 		}
 	}
 }

@@ -1,21 +1,18 @@
-﻿/*
- PureMVC AS3 / Flash Demo - HelloFlash
- By Cliff Hall <clifford.hall@puremvc.org>
- Copyright(c) 2007-08, Some rights reserved.
- */
-package com.qoolu.games.box {
+﻿package com.qoolu.games.box {
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
-	import com.qoolu.games.box.controller.StartupCommand;		
+	import com.qoolu.games.box.controller.GameOverCommand;
+	import com.qoolu.games.box.controller.DeployCommand;
+	import com.qoolu.games.box.controller.StartupCommand;
+	import com.qoolu.games.box.controller.UpgradeCommand;		
 
 	public class ApplicationFacade extends Facade implements IFacade
     {
-        // Notification name constants
-        public static const STARTUP:String  		= "startup";
-        public static const TIME_OVER:String	= "timeOver";
-        public static const UPGRADE:String 	= "spriteScale";
-		public static const SPRITE_DROP:String		= "spriteDrop";
+        public static const STARTUP : String  		= "startup";
+        public static const UPGRADE : String 	= "upgrade";
+		public static const DEPLOY_UI : String		= "deploy";
+		public static const GAME_OVER : String = "gameOVer"; 
 
 		/**
          * Singleton ApplicationFacade Factory Method
@@ -29,11 +26,14 @@ package com.qoolu.games.box {
         /**
          * Register Commands with the Controller 
          */
-        override protected function initializeController( ) : void 
+        override protected function initializeController() : void 
         {
             super.initializeController();            
             registerCommand( STARTUP, StartupCommand );
-        }
+            registerCommand(DEPLOY_UI, DeployCommand) ; 
+            registerCommand(UPGRADE, UpgradeCommand);
+            registerCommand(GAME_OVER, GameOverCommand); 
+		}
         
         public function startup( stage:Object ):void
         {

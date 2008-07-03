@@ -17,16 +17,19 @@ package com.qoolu.games.box.view.components {
 		
 		private var nowTime : Number = 0 ;
 		private var ONESECOND : Number = 1000 ;
-		private var bgMc : MovieClip ;
-		private var precentMc : MovieClip ;
+		//
+		public var bgMc : MovieClip ;
+		public var precentMc : MovieClip ;
+		public var labelMc :MovieClip ;
+		//
 		private var offsetX : Number = 5 ;
 		private var totalTime : Number = 0 ;
 		private var timer : Timer ;
 		public var precent : Number = 0 ;
-		public function CutdownTimer(skin : MovieClip) 
+		public function CutdownTimer() 
 		{
-			bgMc = skin["bgMc"];
-			precentMc = skin["precentMc"];
+			//bgMc = skin["bgMc"];
+			//precentMc = skin["precentMc"];
 		}
 		/**
 		 * @param _totalTime second

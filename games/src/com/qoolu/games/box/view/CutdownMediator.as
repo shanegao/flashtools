@@ -16,7 +16,7 @@ package com.qoolu.games.box.view {
 		public static const NAME : String = "CutdownMediator";
 		
 		
-		public function CutdownMediator() 
+		public function CutdownMediator(viewComponent: Object) 
 		{
 			super(NAME , viewComponent);
 			
@@ -37,6 +37,7 @@ package com.qoolu.games.box.view {
         private function onTimeOver(evt : Event) : void
         {
         	trace("onTimeOver") ;
+        	sendNotification(ApplicationFacade.GAME_OVER);
         }
 		/**
 		 * 得到实例
@@ -49,8 +50,8 @@ package com.qoolu.games.box.view {
       	override public function listNotificationInterests():Array 
         {
             return [
-            		 ApplicationFacade.TIME_OVER,
-            	   ];
+            		 ApplicationFacade.GAME_OVER,
+            		 ];
         }
         
         
@@ -58,9 +59,10 @@ package com.qoolu.games.box.view {
         {
             switch (note.getName() ) 
             {
-                case ApplicationFacade.TIME_OVER : 
-                //do somethings ....
-                break ;
+                case ApplicationFacade.GAME_OVER : 
+                	//do somethings ....
+                	trace("Game over @ CutdownMediator " );
+					break ;
             }
         }
 		
