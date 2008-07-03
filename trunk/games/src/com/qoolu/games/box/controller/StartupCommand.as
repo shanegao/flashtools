@@ -1,7 +1,14 @@
 ﻿package com.qoolu.games.box.controller {
+	import com.qoolu.games.box.ApplicationFacade;	
+	import com.qoolu.games.box.view.StageMediator;	
+	import com.qoolu.games.box.model.LevelDataProxy;	
+	
+	import flash.display.Stage;	
+	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.command.SimpleCommand;	
+	import org.puremvc.as3.patterns.command.SimpleCommand;
+	import org.puremvc.as3.patterns.observer.Notifier;	
 
 	/**
 	 * @author Gaoxian
@@ -15,6 +22,14 @@
         override public function execute( note:INotification ) : void    
         {
 			//
-        }
-    }
+			var stage : Stage = note.getBody() as Stage ;
+			facade.registerProxy(new LevelDataProxy()) ;
+			//
+			//note
+			facade.registerMediator(new StageMediator(stage));
+			//facade.removeMediator(StageMediator.NAME);
+			sendNotification(ApplicationFacade.DEPLOY_UI);
+			
+		}
+	}
 }

@@ -10,7 +10,7 @@
     {
         public static const NAME:String = 'LevelDataProxy';
         
-		public static var CURRENT_LEVEL : int = 0 ;
+		public static var CURRENT_LEVEL : int = 10 ;
         
         public function LevelDataProxy( )
         {
@@ -31,7 +31,7 @@
 		 	if(CURRENT_LEVEL == 3) return [10 ,10] ;
 		 	if(CURRENT_LEVEL == 4) return [12 , 12] ;
 		 	if(CURRENT_LEVEL > 4) return [16 , 16];
-		 	
+		 	return [5,5]
 		 }
 		/**
 		 * 第一关两种颜色
@@ -50,6 +50,7 @@
 			if(CURRENT_LEVEL == 5) return 5 ;
 			if(CURRENT_LEVEL == 6) return 6 ;
 			if(CURRENT_LEVEL > 6) return 8 ;
+			return 2 ;
     	}
     	/**
     	 * 
@@ -67,7 +68,14 @@
     	 	if(numW<= 8 ||numH <= 8) return 5 ;
     	 	if(numW<= 12 || numH <= 12) return 10 ;
     	 	if(numW<= 16 || numH <= 16) return 50 ;
+    	 	return 2 ;
     	 }
-    	
+    	/**
+    	 * 得到当前级别
+    	 */
+    	public function get nextLevel() : int 
+    	{
+			return ++ CURRENT_LEVEL ;
+		}
     }
 }

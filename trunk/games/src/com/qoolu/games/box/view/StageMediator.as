@@ -1,4 +1,8 @@
 package com.qoolu.games.box.view {
+	import com.qoolu.games.box.view.components.CutdownTimer;	
+	import com.qoolu.games.box.view.components.BoxesUI;	
+	import com.qoolu.games.box.model.LevelDataProxy;	
+	
 	import org.puremvc.as3.interfaces.INotification;	
 	
 	import com.qoolu.games.box.ApplicationFacade;	
@@ -7,7 +11,8 @@ package com.qoolu.games.box.view {
 	
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	import org.puremvc.as3.interfaces.IMediator;
-	
+	import org.puremvc.as3.patterns.observer.Notifier;	
+
 	/**
 	 * @author Gaoxian
 	 * 
@@ -15,16 +20,19 @@ package com.qoolu.games.box.view {
 	public class StageMediator extends Mediator implements IMediator 
 	{
 		 public static const NAME:String = 'StageMediator';
-        /**
+		 
+		 private var levelDateProxy : LevelDataProxy ;
+
+		/**
          * Constructor 
          */
 		public function StageMediator(viewComponent : Object) 
 		{
 			super(NAME , viewComponent);
 			
-			
+			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 		}
-		
+
 		/**
 		 * stage
 		 */
@@ -36,8 +44,8 @@ package com.qoolu.games.box.view {
 		override public function listNotificationInterests():Array 
         {
             return [
-            		 ApplicationFacade.STARTUP
-            	   ];
+            		 ApplicationFacade.DEPLOY_UI
+            		];
         }
         
         
@@ -45,9 +53,20 @@ package com.qoolu.games.box.view {
         {
             switch (note.getName() ) 
             {
-                case ApplicationFacade.STARTUP : 
-                	//do somethings ...
-                	break ;
+                case ApplicationFacade.DEPLOY_UI : 
+					trace(ApplicationFacade.DEPLOY_UI);
+					//var params:Array = note.getBody() as Array;
+					//trace(params);
+                	var boxes : BoxesUI = new BoxesUI(levelDateProxy.numOfBox());
+					facade.registerMediator(new BoxesMediator());
+					stage.addChild(boxes);
+					
+					var timer : CutdownTimer = new CutdownTimer();
+					timer.y = stage.stageHeight - timer.height ;
+					facade.registerMediator(new CutdownMediator(timer));
+					timer.start(10);
+					stage.addChild(timer) ;
+					break ;
             }
         }
 	}
