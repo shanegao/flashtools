@@ -11,9 +11,9 @@ package com.qoolu.games.box.view.components {
 
 		public function BoxesUI(nums : Object, roles:Object)
 		{
-			trace("BoxesUI  : "  +nums , roles);
+			trace("BoxesUI  : "  + nums , roles);
 			var wNum : int = nums[0] as int ;
-			var hNum : int = nums[1] as int;
+			var hNum : int = nums[1] as int ;
 			for(var i : int = 0 ; i <wNum ; i++)
 			{
 				var xx : Number = i * 25 ;

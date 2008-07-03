@@ -15,7 +15,9 @@ package com.qoolu.games.box.view {
 		{
 			super(NAME, viewComponent);
 		}
-		
+		/**
+		 * 重新绘制游戏界面
+		 */
 		public function rebuild() : void
 		{
 					

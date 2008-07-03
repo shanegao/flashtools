@@ -28,6 +28,7 @@ package com.qoolu.games.box.view.components {
 		public var precent : Number = 0 ;
 		public function CutdownTimer() 
 		{
+			super();
 			//bgMc = skin["bgMc"];
 			//precentMc = skin["precentMc"];
 		}
