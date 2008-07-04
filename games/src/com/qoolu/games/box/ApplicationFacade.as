@@ -11,9 +11,10 @@
     {
         public static const STARTUP : String  		= "startup";
         public static const UPGRADE : String 	= "upgrade";
-		public static const DEPLOY_UI : String		= "deploy";
+		public static const START_GAME : String		= "start_game";
+		public static const RESTART_GAME : String = "restart_game";
 		public static const GAME_OVER : String = "gameOVer"; 
-
+		
 		/**
          * Singleton ApplicationFacade Factory Method
          */
@@ -29,8 +30,7 @@
         override protected function initializeController() : void 
         {
             super.initializeController();            
-            registerCommand( STARTUP, StartupCommand );
-            registerCommand(DEPLOY_UI, DeployCommand) ; 
+            registerCommand(STARTUP, StartupCommand );
             registerCommand(UPGRADE, UpgradeCommand);
             registerCommand(GAME_OVER, GameOverCommand); 
 		}

@@ -1,5 +1,8 @@
-package com.qoolu.games.box.view 
-{
+package com.qoolu.games.box.view {
+	import flash.events.MouseEvent;	
+	
+	import fl.controls.Button;	
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -32,10 +35,19 @@ package com.qoolu.games.box.view
 			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 			
 			roleDataProxy = facade.retrieveProxy(RoleDataProxy.NAME) as RoleDataProxy ;
+			
+			//
+			var btn : Button = new Button ;
+			main.addChild(btn) ;
+			btn.addEventListener(MouseEvent.CLICK, onClick) ;
 		}
-
+		private function onClick(evt : MouseEvent) :void
+		{
+			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
+			main.removeChild(evt.target as Button) ;
+		}
 		/**
-		 * stage
+		 * main
 		 */
 		protected function get main():BoxMain
 		{
@@ -45,7 +57,7 @@ package com.qoolu.games.box.view
 		override public function listNotificationInterests():Array 
         {
             return [
-            		 ApplicationFacade.DEPLOY_UI
+            		 ApplicationFacade.START_GAME
             		];
         }
         
@@ -54,8 +66,8 @@ package com.qoolu.games.box.view
         {
             switch (note.getName() ) 
             {
-                case ApplicationFacade.DEPLOY_UI : 
-					trace(ApplicationFacade.DEPLOY_UI);
+                case ApplicationFacade.START_GAME : 
+					trace(ApplicationFacade.START_GAME);
 					//var level:int = note.getBody() as int;
 					//trace(params);
 					var numOfRole : int = levelDateProxy.numOfRole() as int ;
@@ -64,8 +76,6 @@ package com.qoolu.games.box.view
 					var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
 					facade.registerMediator(new BoxesMediator());
 					main.addChild(boxes);
-					
-					
 					
 					var timer : CutdownTimer = new CutdownTimer();
 					timer.y = main.stage.stageHeight - timer.height ;

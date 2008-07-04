@@ -19,8 +19,8 @@ package com.qoolu.games.box.controller {
 		override public function execute(note : INotification) : void 
 		{
 			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy;
-			levelData.levelAdd();
-			sendNotification(ApplicationFacade.DEPLOY_UI, levelData.level);
+			levelData.levelAdd();//加1级
+			sendNotification(ApplicationFacade.RESTART_GAME, levelData.level);
 		}
 	}
 }
