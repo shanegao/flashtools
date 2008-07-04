@@ -66,7 +66,6 @@ package com.qoolu.games.box.view {
 					break ;
             }
         }
-		
   
 	}
 }

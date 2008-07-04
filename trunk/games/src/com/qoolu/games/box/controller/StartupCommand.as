@@ -29,9 +29,9 @@
 			//
 			//note
 			facade.registerMediator(new ApplicationMediator(main));
-			//facade.removeMediator(StageMediator.NAME);
-			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
-			sendNotification(ApplicationFacade.DEPLOY_UI, levelData.level);
+			//facade.removeMediator(ApplicationMediator.NAME);
+			//var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
+			//sendNotification(ApplicationFacade.DEPLOY_UI, levelData.level);
 		}
 	}
 }
