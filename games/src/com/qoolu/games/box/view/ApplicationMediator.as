@@ -1,6 +1,5 @@
-package com.qoolu.games.box.view {
-	import flash.display.Stage;
-	
+package com.qoolu.games.box.view 
+{
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -14,11 +13,11 @@ package com.qoolu.games.box.view {
 
 	/**
 	 * @author Gaoxian
-	 * 
+	 * ApplicationMediator @ BoxMain
 	 */
-	public class StageMediator extends Mediator implements IMediator 
+	public class ApplicationMediator extends Mediator implements IMediator 
 	{
-		public static const NAME:String = 'StageMediator';
+		public static const NAME:String = 'ApplicationMediator';
 		 
 		private var levelDateProxy : LevelDataProxy ;
 		private var roleDataProxy : RoleDataProxy ;
@@ -26,7 +25,7 @@ package com.qoolu.games.box.view {
 		/**
          * Constructor 
          */
-		public function StageMediator(viewComponent : Object) 
+		public function ApplicationMediator(viewComponent : Object) 
 		{
 			super(NAME , viewComponent);
 			
@@ -38,9 +37,9 @@ package com.qoolu.games.box.view {
 		/**
 		 * stage
 		 */
-		protected function get stage():Stage
+		protected function get main():BoxMain
 		{
-            return viewComponent as Stage;
+            return viewComponent as BoxMain;
 		}
 		
 		override public function listNotificationInterests():Array 
@@ -64,15 +63,15 @@ package com.qoolu.games.box.view {
                 	var roles: Array = roleDataProxy.rolesInCurrentLevel(numOfRole);
 					var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
 					facade.registerMediator(new BoxesMediator());
-					stage.addChild(boxes);
+					main.addChild(boxes);
 					
 					
 					
 					var timer : CutdownTimer = new CutdownTimer();
-					timer.y = stage.stageHeight - timer.height ;
+					timer.y = main.stage.stageHeight - timer.height ;
 					facade.registerMediator(new CutdownMediator(timer));
 					timer.start(10);
-					stage.addChild(timer) ;
+					main.addChild(timer) ;
 					break ;
 				case ApplicationFacade.UPGRADE  :
 					trace("ApplicationFacade.UPGRADE " + note.getBody());

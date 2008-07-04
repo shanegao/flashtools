@@ -35,9 +35,9 @@
             registerCommand(GAME_OVER, GameOverCommand); 
 		}
         
-        public function startup( stage:Object ):void
+        public function startup( main:Object ):void
         {
-        	sendNotification( STARTUP, stage );
+        	sendNotification( STARTUP, main );
         }
         
     }
