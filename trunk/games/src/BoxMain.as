@@ -5,6 +5,7 @@ package {
 
 	public class BoxMain extends MovieClip
 	{
+		public var preview : MovieClip ;
 		public function BoxMain()
 		{
 			ApplicationFacade.getInstance().startup( this );
