@@ -1,7 +1,7 @@
-package com.qoolu.games.box.view {
+﻿package com.qoolu.games.box.view {
 	import flash.events.MouseEvent;	
 	
-	import fl.controls.Button;	
+	//import fl.controls.Button;	
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -37,15 +37,17 @@ package com.qoolu.games.box.view {
 			roleDataProxy = facade.retrieveProxy(RoleDataProxy.NAME) as RoleDataProxy ;
 			
 			//
-			var btn : Button = new Button ;
-			main.addChild(btn) ;
-			btn.addEventListener(MouseEvent.CLICK, onClick) ;
+			//var btn : Button = new Button ;
+			//main.addChild(btn) ;
+			//btn.addEventListener(MouseEvent.CLICK, onClick) ;
+			main.preview.addEventListener(MouseEvent.CLICK, onClick) ;
 		}
 		private function onClick(evt : MouseEvent) :void
 		{
 			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
-			main.removeChild(evt.target as Button) ;
+			//main.removeChild(evt.target as Button) ;
 		}
+	
 		/**
 		 * main
 		 */

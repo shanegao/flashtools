@@ -1,9 +1,7 @@
 ﻿package com.qoolu.games.box {
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
-	
 	import com.qoolu.games.box.controller.GameOverCommand;
-	import com.qoolu.games.box.controller.DeployCommand;
 	import com.qoolu.games.box.controller.StartupCommand;
 	import com.qoolu.games.box.controller.UpgradeCommand;		
 
