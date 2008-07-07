@@ -1,5 +1,6 @@
-package com.qoolu.games.box.model 
-{
+package com.qoolu.games.box.model {
+	import com.qoolu.games.box.view.components.blockys.Blocky;	
+	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	import org.puremvc.as3.interfaces.IProxy;
 	
@@ -52,6 +53,13 @@ package com.qoolu.games.box.model
 				targetArr.splice(index,1);
 			}
 			return arr;
+		}
+		/**
+		 * 用户设定选中区域
+		 */
+		public function userSelect(start :Blocky , end : Blocky) : void
+		{
+				
 		}
 	}
 }
