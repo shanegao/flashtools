@@ -2,7 +2,8 @@ package com.qoolu.games.box.view.components.blockys {
 	import com.qoolu.games.box.view.components.blockys.Blocky;
 	
 	/**
-	 * @author Administrator
+	 * @author Gaoxian
+	 * 粉色广场
 	 */
 	public class PinkBlocky extends Blocky 
 	{

@@ -1,6 +1,4 @@
 ﻿package com.qoolu.games.box.view {
-	import com.qoolu.games.box.view.components.GamingUI;	
-	
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -9,8 +7,9 @@
 	import org.puremvc.as3.patterns.observer.Notifier;
 	
 	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.BlockyDataProxy;
+	import com.qoolu.games.box.model.LevelDataProxy;
+	import com.qoolu.games.box.view.components.GamingUI;
 	import com.qoolu.games.box.view.components.GuideUI;
 	import com.qoolu.games.box.view.components.PreviewUI;		
 
@@ -39,19 +38,25 @@
 			initPreview();
 			
 		}
-		
+		/**
+		 * 添加preview侦听
+		 */
 		private function initPreview() : void
 		{
 			main.preview.addEventListener(PreviewUI.START, startGame) ;
 			main.preview.addEventListener(PreviewUI.GUIDE, gameGuide) ;
 		}
-
+		/**
+		 * 开始游戏
+		 */
 		private function startGame(evt : Event) : void 
 		{
 			trace("startgame");
 			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
 		}
-		
+		/**
+		 * 出现游戏指南
+		 */
 		private function gameGuide(evt :Event) : void
 		{
 			sendNotification(ApplicationFacade.GAME_GUIDE, main.preview);
@@ -88,7 +93,7 @@
 					//if(target.parent != null) main.removeChild(target) ;
 					if(main.preview != null) main.removeChild(main.preview);
 					var gaming : GamingUI = new GamingUI();
-					//gaming.
+					gaming.build(numOfBox ,roles );
 					main.addChild(gaming) ;
 					//var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
 					//facade.registerMediator(new BoxesMediator());
