@@ -10,7 +10,7 @@
 	
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.LevelDataProxy;
-	import com.qoolu.games.box.model.RoleDataProxy;
+	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.view.components.GuideUI;
 	import com.qoolu.games.box.view.components.PreviewUI;		
 
@@ -23,7 +23,7 @@
 		public static const NAME:String = 'ApplicationMediator';
 		 
 		private var levelDateProxy : LevelDataProxy ;
-		private var roleDataProxy : RoleDataProxy ;
+		private var roleDataProxy : BlockyDataProxy ;
 
 		/**
          * Constructor 
@@ -34,7 +34,7 @@
 			
 			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 			
-			roleDataProxy = facade.retrieveProxy(RoleDataProxy.NAME) as RoleDataProxy ;
+			roleDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
 			
 			initPreview();
 			

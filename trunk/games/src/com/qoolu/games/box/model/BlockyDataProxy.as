@@ -7,22 +7,22 @@ package com.qoolu.games.box.model
 	 * 角色数据
 	 * @author Gaoxian
 	 */
-	public class RoleDataProxy extends Proxy implements IProxy 
+	public class BlockyDataProxy extends Proxy implements IProxy 
 	{
 		public static const NAME : String = "RoleDataProxy";
 		
 		private var roleArray : Array ;
 		
-		private var RED : String = "RedRole";
-		private var BLUE : String = "BlueRole";
-		private var DEEP_BLUE : String = "DeepBlueRole" ;
-		private var YELLOW  : String = "YellowRole" ;
-		private var GREEN : String = "GreenRole";
-		private var PURPLE : String = "PurpleRole" ;
-		private var PINK : String = "PinkRole";
-		private var GREY : String = "GreyRole";
+		private var RED : String = "RedBlocky";
+		private var BLUE : String = "BlueBlocky";
+		private var DEEP_BLUE : String = "DeepBlueBlocky" ;
+		private var YELLOW  : String = "YellowBlocky" ;
+		private var GREEN : String = "GreenBlocky";
+		private var PURPLE : String = "PurpleBlocky" ;
+		private var PINK : String = "PinkBlocky";
+		private var GREY : String = "GreyBlocky";
 		
-		public function RoleDataProxy () 
+		public function BlockyDataProxy () 
 		{
 			super(NAME);
 			roleArray = [RED , BLUE, DEEP_BLUE , YELLOW , GREEN , PURPLE ,PINK , GREY];
