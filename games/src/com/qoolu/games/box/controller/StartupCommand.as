@@ -5,7 +5,7 @@
 	import org.puremvc.as3.patterns.observer.Notifier;
 	
 	import com.qoolu.games.box.model.LevelDataProxy;
-	import com.qoolu.games.box.model.RoleDataProxy;
+	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.model.ScoreDataProxy;
 	import com.qoolu.games.box.view.ApplicationMediator;		
 
@@ -23,7 +23,7 @@
 			//
 			var main : BoxMain = note.getBody() as BoxMain ;
 			facade.registerProxy(new LevelDataProxy()) ;
-			facade.registerProxy(new RoleDataProxy()) ;
+			facade.registerProxy(new BlockyDataProxy()) ;
 			facade.registerProxy(new ScoreDataProxy()) ;
 			//
 			//note
