@@ -21,7 +21,7 @@ package com.qoolu.games.box.view.components {
 		//
 		private var bgMc : MovieClip ;
 		private var precentMc : MovieClip ;
-		private var labelMc :MovieClip ;
+		//private var labelMc :MovieClip ;
 		//
 		private var offsetX : Number = 5 ;
 		private var totalTime : Number = 0 ;

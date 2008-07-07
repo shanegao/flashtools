@@ -1,4 +1,5 @@
 ﻿package com.qoolu.games.box.view.components {
+	import flash.geom.Point;	
 	import flash.events.MouseEvent;	
 	import flash.display.Sprite;	
 	import flash.display.MovieClip;
@@ -23,6 +24,8 @@
 		
 		private var gamingData : Array  ;
 		private var border : Sprite ;
+		private var startPoint : Point = new Point ;
+		private var endPoint : Point = new Point ; 
 		public function GamingUI()
 		{
 			trace("GamingUI created ! " + boardMc.name);
@@ -50,6 +53,7 @@
 				{
 					var blocky : String  = roles[Math.floor(Math.random()* roles.length)] as String; 
 					var item : Blocky = BlockyManager.createBlocky(blocky) as Blocky;
+					item.mouseChildren = false ;
 					item.name = "blocky_"+i+"_"+j ;
 					item.x = xx ;
 					item.y = itemH * j ;
@@ -87,10 +91,12 @@
 			var t : Blocky = evt.currentTarget as Blocky ;
 			border = new Sprite();
 			boardMc.addChild(border) ;
-			border.graphics.lineStyle(2,0xFF0000);
+			border.graphics.lineStyle(4,0xFF0000);
 			border.graphics.drawRect(0, 0, t.width, t.height);
 			border.x = t.x + 1 ;
 			border.y = t.y + 1 ;
+			startPoint.x = t.x + 1 ;
+			startPoint.y = t.y + 1 ;
 		}
 		
 		private function rollOver(	evt : MouseEvent) : void
@@ -103,7 +109,48 @@
 		 */
 		private function mouseMoveHandler(evt : MouseEvent) : void 
 		{
-			if(startDraw)
+			trace("mouseMoveHandler : "  + evt.target.name);
+			var tName : String = String(evt.target.name) ;
+			if(startDraw && tName.indexOf("blocky_") !=-1)
+			{
+				var item : Blocky = boardMc.getChildByName(tName) as Blocky ;
+				var t : Blocky = evt.target as Blocky ;
+				border.graphics.clear();
+				border.graphics.lineStyle(4,0xFF0000);
+				if(t.x >= startPoint.x)
+				{
+					if(t.y >= startPoint.y )
+					{
+						border.graphics.drawRect(0, 0, t.x + t.width - startPoint.x, t.y +t.height - startPoint.y);
+						border.x = startPoint.x ;
+						border.y = startPoint.y ;
+					}
+					else
+					{
+						border.graphics.drawRect(0, 0, t.x + t.width - startPoint.x,   startPoint.y + t.height -t.y );
+						border.x = startPoint.x ;
+						border.y = t.y ;
+					}
+				}
+				else
+				{
+					if(t.y >= startPoint.y )
+					{
+						border.graphics.drawRect(0, 0, startPoint.x +t.width - t.x, t.y +t.height - startPoint.y);
+						border.x = t.x ;
+						border.y = startPoint.y ;
+					}
+					else
+					{
+						border.graphics.drawRect(0, 0, t.width + startPoint.x - t.x ,   startPoint.y + t.height - t.y );
+						border.x = t.x ;
+						border.y = t.y ;
+					}
+					
+				}
+			}
+			/**
+			if(false)
 			{
 				 //trace(evt.localX , evt.localY);
 				 var nowX : Number = Number(evt.localX) ;
@@ -128,6 +175,8 @@
 				 	}
 				 }
 			}
+			 * 
+			 */
 		}
 
 		/**
