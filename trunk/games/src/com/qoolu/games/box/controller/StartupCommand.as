@@ -4,7 +4,6 @@
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	import org.puremvc.as3.patterns.observer.Notifier;
 	
-	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.RoleDataProxy;
 	import com.qoolu.games.box.model.ScoreDataProxy;

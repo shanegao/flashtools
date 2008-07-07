@@ -3,8 +3,9 @@ package com.qoolu.games.box.view.components.roles {
 	/**
 	 * @author Gaoxian
 	 */
-	public interface IRole {
+	public interface IBlocky {
 	}
 	
-	//function show
+	function info();
+	
 }

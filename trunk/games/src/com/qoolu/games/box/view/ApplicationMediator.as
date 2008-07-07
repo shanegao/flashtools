@@ -1,7 +1,7 @@
 ﻿package com.qoolu.games.box.view {
-	import flash.events.MouseEvent;	
+	import com.qoolu.games.box.view.components.GamingUI;	
 	
-	//import fl.controls.Button;	
+	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -11,8 +11,8 @@
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.RoleDataProxy;
-	import com.qoolu.games.box.view.components.BoxesUI;
-	import com.qoolu.games.box.view.components.CutdownTimer;		
+	import com.qoolu.games.box.view.components.GuideUI;
+	import com.qoolu.games.box.view.components.PreviewUI;		
 
 	/**
 	 * @author Gaoxian
@@ -36,18 +36,26 @@
 			
 			roleDataProxy = facade.retrieveProxy(RoleDataProxy.NAME) as RoleDataProxy ;
 			
-			//
-			//var btn : Button = new Button ;
-			//main.addChild(btn) ;
-			//btn.addEventListener(MouseEvent.CLICK, onClick) ;
-			main.preview.addEventListener(MouseEvent.CLICK, onClick) ;
+			initPreview();
+			
 		}
-		private function onClick(evt : MouseEvent) :void
+		
+		private function initPreview() : void
 		{
-			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
-			//main.removeChild(evt.target as Button) ;
+			main.preview.addEventListener(PreviewUI.START, startGame) ;
+			main.preview.addEventListener(PreviewUI.GUIDE, gameGuide) ;
 		}
-	
+
+		private function startGame(evt : Event) : void 
+		{
+			trace("startgame");
+			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
+		}
+		
+		private function gameGuide(evt :Event) : void
+		{
+			sendNotification(ApplicationFacade.GAME_GUIDE, main.preview);
+		}
 		/**
 		 * main
 		 */
@@ -59,14 +67,15 @@
 		override public function listNotificationInterests():Array 
         {
             return [
-            		 ApplicationFacade.START_GAME
+            		 ApplicationFacade.START_GAME ,
+            		 ApplicationFacade.GAME_GUIDE
             		];
         }
         
         
         override public function handleNotification( note : INotification ) : void 
         {
-            switch (note.getName() ) 
+            switch (note.getName()) 
             {
                 case ApplicationFacade.START_GAME : 
 					trace(ApplicationFacade.START_GAME);
@@ -75,19 +84,31 @@
 					var numOfRole : int = levelDateProxy.numOfRole() as int ;
                 	var numOfBox : Array = levelDateProxy.numOfBox();
                 	var roles: Array = roleDataProxy.rolesInCurrentLevel(numOfRole);
-					var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
-					facade.registerMediator(new BoxesMediator());
-					main.addChild(boxes);
-					
+					//var target : PreviewUI = note.getBody() as PreviewUI ;
+					//if(target.parent != null) main.removeChild(target) ;
+					if(main.preview != null) main.removeChild(main.preview);
+					var gaming : GamingUI = new GamingUI();
+					//gaming.
+					main.addChild(gaming) ;
+					//var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
+					//facade.registerMediator(new BoxesMediator());
+					//main.addChild(boxes);
+					/*
 					var timer : CutdownTimer = new CutdownTimer();
 					timer.y = main.stage.stageHeight - timer.height ;
 					facade.registerMediator(new CutdownMediator(timer));
 					timer.start(10);
 					main.addChild(timer) ;
+					 */
 					break ;
-				case ApplicationFacade.UPGRADE  :
-					trace("ApplicationFacade.UPGRADE " + note.getBody());
-					break ;	
+				case ApplicationFacade.GAME_GUIDE :
+					trace("ApplicationFacade.GAME_GUIDE " + ApplicationFacade.GAME_GUIDE);	
+					var target : PreviewUI = note.getBody() as PreviewUI ;
+					if(target.parent != null) main.removeChild(target) ;
+					var guide  :GuideUI = GuideUI.getInstance() ;
+					main.addChild(guide) ;
+					guide.addEventListener(GuideUI.START, startGame) ;
+					break ;
             }
         }
 	}
