@@ -1,4 +1,5 @@
 package com.qoolu.games.box.view.components {
+	import flash.events.EventDispatcher;	
 	import flash.events.Event;	
 	import flash.events.TimerEvent;	
 	import flash.utils.Timer;	
@@ -7,7 +8,7 @@ package com.qoolu.games.box.view.components {
 	/**
 	 * @author Gaoxian
 	 */
-	public class CutdownTimer extends MovieClip 
+	public class CutdownTimer extends EventDispatcher 
 	{
 		/**
 		 * @event Cutdown
@@ -18,19 +19,22 @@ package com.qoolu.games.box.view.components {
 		private var nowTime : Number = 0 ;
 		private var ONESECOND : Number = 1000 ;
 		//
-		public var bgMc : MovieClip ;
-		public var precentMc : MovieClip ;
-		public var labelMc :MovieClip ;
+		private var bgMc : MovieClip ;
+		private var precentMc : MovieClip ;
+		private var labelMc :MovieClip ;
 		//
 		private var offsetX : Number = 5 ;
 		private var totalTime : Number = 0 ;
 		private static var timer : Timer ;
 		public var precent : Number = 0 ;
-		public function CutdownTimer() 
+		
+		
+		public function CutdownTimer(skin : MovieClip) 
 		{
-			super();
-			//bgMc = skin["bgMc"];
-			//precentMc = skin["precentMc"];
+			//super();
+			//trace(skin.bgMc);
+			bgMc = skin["bgMc"];
+			precentMc = skin["precentMc"];
 		}
 		/**
 		 * @param _totalTime second

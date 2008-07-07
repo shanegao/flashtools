@@ -12,7 +12,7 @@
 		public static const START_GAME : String		= "start_game";
 		public static const RESTART_GAME : String = "restart_game";
 		public static const GAME_OVER : String = "gameOVer"; 
-		
+		public static const GAME_GUIDE : String = "gameGuide";
 		/**
          * Singleton ApplicationFacade Factory Method
          */
