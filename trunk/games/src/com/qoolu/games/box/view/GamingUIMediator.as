@@ -34,6 +34,8 @@ package com.qoolu.games.box.view {
 		{
 			var tar : GamingUI = evt.target as GamingUI ;
 			blockyData.blockyArray = tar.gamingData as Array ;
+			trace("gmaingData : " , tar.gamingData[0]) ;
+			trace("onBuildComplete");
 		}
 		/**
 		 * 

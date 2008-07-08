@@ -62,8 +62,28 @@ package com.qoolu.games.box.model {
 		public function userSelect(start :Blocky , end : Blocky) : void
 		{
 			trace("BlockyDataProxy : " + start.color,end.color);
-			trace(start.pos);
-			var startIndex : Array = [];	
+			trace(start.pos , end.pos);
+			var s : Array = start.pos as Array ;
+			var e : Array = end.pos as Array ;
+			
+			var tl : Blocky = start ;
+			var tr : Blocky = blockyArray[e[0]][s[1]] as Blocky ;
+			var br : Blocky = end ; 
+			var bl : Blocky = blockyArray[s[0]][e[1]] as Blocky ;
+			trace(tl.color,tr.color,br.color,bl.color);
+			
+			if(tl.color == tr.color && tl.color == br.color && tl.color == bl.color)
+			{
+				for	(var i : int= int(s[0]);i<= int(e[0]);i++)
+				{
+					for(var j : int= int(s[1]);j<= int(e[1]);j++)
+					{
+						var item : Blocky = blockyArray[i][j] as Blocky ;
+						trace(i,j," select items : " + item.name);
+						if(item.hasPet())item.removePet();
+					}
+				}
+			}
 		}
 		/**
 		 * 当前游戏中的方块信息数据
