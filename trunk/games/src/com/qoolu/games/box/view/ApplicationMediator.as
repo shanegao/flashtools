@@ -52,6 +52,7 @@
 		private function startGame(evt : Event) : void 
 		{
 			trace("startgame");
+			
 			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
 		}
 		/**
@@ -91,10 +92,11 @@
                 	var roles: Array = roleDataProxy.rolesInCurrentLevel(numOfRole);
 					//var target : PreviewUI = note.getBody() as PreviewUI ;
 					//if(target.parent != null) main.removeChild(target) ;
-					if(main.preview != null) main.removeChild(main.preview);
+					if(main.preview != null && main.contains(main.preview)) main.removeChild(main.preview);
 					var gaming : GamingUI = new GamingUI();
 					gaming.build(numOfBox ,roles );
 					main.addChild(gaming) ;
+					facade.registerMediator(new GamingUIMediator(gaming));
 					//var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
 					//facade.registerMediator(new BoxesMediator());
 					//main.addChild(boxes);

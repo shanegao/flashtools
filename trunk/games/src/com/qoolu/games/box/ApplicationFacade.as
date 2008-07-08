@@ -1,4 +1,6 @@
 ﻿package com.qoolu.games.box {
+	import com.qoolu.games.box.controller.UserSelectCommand;	
+	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	import com.qoolu.games.box.controller.GameOverCommand;
@@ -13,6 +15,7 @@
 		public static const RESTART_GAME : String = "restart_game";
 		public static const GAME_OVER : String = "gameOVer"; 
 		public static const GAME_GUIDE : String = "gameGuide";
+		public static const USER_SELECT : String = "userSelect";
 		/**
          * Singleton ApplicationFacade Factory Method
          */
@@ -31,6 +34,7 @@
             registerCommand(STARTUP, StartupCommand );
             registerCommand(UPGRADE, UpgradeCommand);
             registerCommand(GAME_OVER, GameOverCommand); 
+            registerCommand(USER_SELECT, UserSelectCommand);
 		}
         
         public function startup( main:Object ):void
