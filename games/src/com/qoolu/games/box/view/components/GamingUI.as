@@ -76,6 +76,7 @@
 			/**
 			 * 方块创建完成
 			 */
+			 trace("build complete");
 			dispatchEvent(new Event(BUILD_COMPLETE)) ;
 		}
 
@@ -197,7 +198,7 @@
 		 */
 		private function gameRunning(evt : Event) : void
 		{
-			trace("gameRunning=================="); 
+			//trace("gameRunning=================="); 
 		}
 		/**
 		 * 游戏结束

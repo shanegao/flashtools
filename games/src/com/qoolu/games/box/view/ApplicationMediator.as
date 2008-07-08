@@ -94,19 +94,9 @@
 					//if(target.parent != null) main.removeChild(target) ;
 					if(main.preview != null && main.contains(main.preview)) main.removeChild(main.preview);
 					var gaming : GamingUI = new GamingUI();
+					facade.registerMediator(new GamingUIMediator(gaming));
 					gaming.build(numOfBox ,roles );
 					main.addChild(gaming) ;
-					facade.registerMediator(new GamingUIMediator(gaming));
-					//var boxes : BoxesUI = new BoxesUI(numOfBox ,roles );
-					//facade.registerMediator(new BoxesMediator());
-					//main.addChild(boxes);
-					/*
-					var timer : CutdownTimer = new CutdownTimer();
-					timer.y = main.stage.stageHeight - timer.height ;
-					facade.registerMediator(new CutdownMediator(timer));
-					timer.start(10);
-					main.addChild(timer) ;
-					 */
 					break ;
 				case ApplicationFacade.GAME_GUIDE :
 					trace("ApplicationFacade.GAME_GUIDE " + ApplicationFacade.GAME_GUIDE);	
