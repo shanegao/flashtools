@@ -69,6 +69,7 @@ package com.qoolu.games.box.view {
         		case ApplicationFacade.RE_DRAW : 
         			trace("re draw.......................") ;
         			var blocky : Blocky = note.getBody() as Blocky ;
+        			if(blocky.hasPet) blocky.removePet();
 					blockies.createBlocky(blocky.pos[0] , blocky.pos[1]);
         			break ;
         		case ApplicationFacade.RESTART_GAME :
