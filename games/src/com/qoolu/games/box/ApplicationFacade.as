@@ -16,6 +16,8 @@
 		public static const GAME_OVER : String = "gameOVer"; 
 		public static const GAME_GUIDE : String = "gameGuide";
 		public static const USER_SELECT : String = "userSelect";
+		
+		public static const RE_DRAW : String = "re_drew";
 		/**
          * Singleton ApplicationFacade Factory Method
          */

@@ -13,6 +13,7 @@
 		public var pet : MovieClip ;
 		private var _color : String = "red";
 		private var _pos : Array ;
+		private var _hasPet : Boolean = true;
 		
 		public function get info() : Array
 		{
@@ -43,9 +44,9 @@
 		/**
 		 * 判断方块是否还有宠物
 		 */
-		public function hasPet() : Boolean
+		public function get hasPet() : Boolean
 		{
-			return pet != null ;
+			return _hasPet ;
 		}
 		/**
 		 * 删除头像
@@ -53,6 +54,7 @@
 		public function removePet() : void
 		{
 			if(pet != null && contains(pet)) removeChild(pet) ;
+			_hasPet = false ;
 		}
 	}
 	
