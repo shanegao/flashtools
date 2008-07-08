@@ -1,9 +1,11 @@
 package com.qoolu.games.box.model {
-	import com.qoolu.games.box.view.components.blockys.Blocky;	
+	import com.qoolu.games.box.ApplicationFacade;	
 	
-	import org.puremvc.as3.patterns.proxy.Proxy;
 	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.proxy.Proxy;
 	
+	import com.qoolu.games.box.view.components.blockys.Blocky;		
+
 	/**
 	 * 角色数据
 	 * @author Gaoxian
@@ -24,7 +26,7 @@ package com.qoolu.games.box.model {
 		private var GREY : String = "GreyBlocky";
 		
 		private var  _blockyArray : Array ;
-		
+		private var _roles : Array ;
 		public function BlockyDataProxy () 
 		{
 			super(NAME);
@@ -74,15 +76,33 @@ package com.qoolu.games.box.model {
 			
 			if(tl.color == tr.color && tl.color == br.color && tl.color == bl.color)
 			{
-				for	(var i : int= int(s[0]);i<= int(e[0]);i++)
+				var x1 : int = s[0] > e[0] ? e[0] : s[0] ;
+				var x2 : int = s[0] < e[0] ? e[0] : s[0] ;
+				var x3 : int = s[1] > e[1] ? e[1] : s[1] ;
+				var x4 : int = s[1] < e[1] ? e[1] : s[1] ;
+				for	(var i : int= x1 ;i<= x2 ;i++)
 				{
-					for(var j : int= int(s[1]);j<= int(e[1]);j++)
+					for(var j : int= x3 ;j<= x4 ; j++)
 					{
 						var item : Blocky = blockyArray[i][j] as Blocky ;
 						trace(i,j," select items : " + item.name);
-						if(item.hasPet())item.removePet();
+						if(item.hasPet) item.removePet();
+						sendNotification(ApplicationFacade.RE_DRAW , item);
 					}
 				}
+				
+				//检查是否全部消除
+				for(var m : int = 0 ; m< blockyArray.length ;m++)
+			 	{
+					for(var n : int = 0 ; n <blockyArray[m].length ; n++)
+					{
+						var blocky : Blocky = blockyArray[m][n] as Blocky ;
+						if(blocky.hasPet) return ;
+					 }
+			 	}
+			 	sendNotification(ApplicationFacade.UPGRADE);
+				trace("全部消除la.....................");
+				
 			}
 		}
 		/**
@@ -95,6 +115,17 @@ package com.qoolu.games.box.model {
 		public function get blockyArray()  :Array 
 		{
 			return _blockyArray as Array;
+		}
+		/**
+		 * 当前游戏中的方块信息数据
+		 */
+		public function set roles(arr : Array)  :void
+		{
+			_roles = arr ; 
+		}
+		public function get roles()  :Array 
+		{
+			return _roles as Array;
 		}
 	}
 }

@@ -1,4 +1,9 @@
 package com.qoolu.games.box.view {
+	import com.qoolu.games.box.model.LevelDataProxy;	
+	import com.qoolu.games.box.view.components.blockys.Blocky;	
+	
+	import org.puremvc.as3.interfaces.INotification;	
+	
 	import com.qoolu.games.box.ApplicationFacade;	
 	
 	import flash.events.Event;
@@ -34,23 +39,52 @@ package com.qoolu.games.box.view {
 		{
 			var tar : GamingUI = evt.target as GamingUI ;
 			blockyData.blockyArray = tar.gamingData as Array ;
-			trace("gmaingData : " , tar.gamingData[0]) ;
-			trace("onBuildComplete");
 		}
 		/**
-		 * 
+		 * 用户选择区域事件处理
 		 */
 		private function onUserSelect(evt : Event) : void
 		{
 			var tar : GamingUI = evt.target as GamingUI ;
-			//trace("onUserSelect : " +  tar.startBlocky.name , tar.endBlocky.name);
-			//trace(tar.startBlocky.color);
 			sendNotification(ApplicationFacade.USER_SELECT , [tar.startBlocky,tar.endBlocky]) ;
 		}
-
+		/**
+		 * 得到gamingUI
+		 */
 		public function get blockies() : GamingUI 
 		{
 			return viewComponent as GamingUI ;
 		}
+		
+		override public function listNotificationInterests():Array 
+        {
+            return [
+            		 ApplicationFacade.RE_DRAW ,
+            		 ApplicationFacade.RESTART_GAME
+            		 ];
+		}
+        
+        
+        override public function handleNotification( note : INotification ) : void 
+        {
+        	switch(note.getName())
+        	{
+        		case ApplicationFacade.RE_DRAW : 
+        			trace("re draw.......................") ;
+        			var blocky : Blocky = note.getBody() as Blocky ;
+					blockies.createBlocky(blocky.pos[0] , blocky.pos[1]);
+        			break ;
+        		case ApplicationFacade.RESTART_GAME :
+        			var level : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
+					var blockyData : BlockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
+					var numOfRole : int = level.numOfRole() as int ;
+            		var numOfBox : Array = level.numOfBox();
+           	 		var roles: Array = blockyData.rolesInCurrentLevel(numOfRole);
+            		blockyData.roles = roles ;
+        			blockies.build(numOfBox, roles);
+        			trace("restart game ..........");
+        			break ;	
+        	}
+        }
 	}
 }

@@ -21,7 +21,6 @@
 		public var cutdownMc : MovieClip ;
 		
 		private var cutdownTimer : CutdownTimer ;
-		private var container : Sprite ;
 		private var startDraw : Boolean ;
 		
 		private var _gamingData : Array  ;
@@ -30,11 +29,12 @@
 		private var _startBlocky : Blocky ;
 		private var _endBlocky : Blocky ;
 		
+		private var rolesArr :Array ;
+		private var itemW: Number = 0 ;
+		private var itemH: Number = 0 ;
 		public function GamingUI()
 		{
 			trace("GamingUI created ! " + boardMc.name);
-			_gamingData = [];
-			container = new Sprite() ;
 			initUI();
 		}
 		/**
@@ -42,44 +42,58 @@
 		 */
 		public function build(nums : Array, roles:Array) : void
 		{
-			trace(nums , roles);
-			var wNum : int = nums[0] as int ;
-			var hNum : int = nums[1] as int ;
-
-			var itemW : Number = Math.floor(boardMc.width / wNum);
-			var itemH : Number = Math.floor(boardMc.height / hNum); 
-						
-			for(var i : int = 0 ; i <wNum ; i++)
+			//trace(nums , roles);
+			while(boardMc.numChildren > 1) 
 			{
-				var xx : Number = i * itemW ;
-				_gamingData[i] = [] ; 
-				for(var j : int = 0 ; j < hNum ; j++)
-				{
-					var blockyClass : String  = roles[Math.floor(Math.random()* roles.length)] as String; 
-					var item : Blocky = BlockyManager.createBlocky(blockyClass) as Blocky;
-					item.mouseChildren = false ;
-					item.name = "blocky_"+i+"_"+j ;
-					item.color = blockyClass ;
-					item.pos = [i,j] ;
-					item.x = xx ;
-					item.y = itemH * j ;
-					item.width = itemW - 1 ;
-					item.height = itemH - 1 ;
-					boardMc.addChild(item);
-					_gamingData[i][j] = item ;
-					initBlocky(item);
-				}
+				trace("build " +boardMc.numChildren);
+				boardMc.removeChildAt(boardMc.numChildren - 1) ;
 			}
 			
 			border = new Sprite();
+			rolesArr = roles ;
+			var wNum : int = nums[0] as int ;
+			var hNum : int = nums[1] as int ;
+
+			itemW = Math.floor(boardMc.width / wNum);
+			itemH = Math.floor(boardMc.height / hNum); 
+			_gamingData = [];			
+			for(var i : int = 0 ; i <wNum ; i++)
+			{
+				_gamingData[i] = [] ; 
+				for(var j : int = 0 ; j < hNum ; j++) createBlocky(i,j);
+			}
+			
+			
 			boardMc.addChild(border) ;
 			/**
 			 * 方块创建完成
 			 */
-			 trace("build complete");
 			dispatchEvent(new Event(BUILD_COMPLETE)) ;
 		}
-
+		public function createBlocky(i : int , j : int): void
+		{	
+			var rebuild : Boolean = _gamingData[i][j] !=null ;
+			if(_gamingData[i][j] !=null) boardMc.removeChild(_gamingData[i][j]);
+			
+			var blockyClass : String  = rolesArr[Math.floor(Math.random()* rolesArr.length)] as String; 
+			var item : Blocky = BlockyManager.createBlocky(blockyClass) as Blocky;
+			item.mouseChildren = false ;
+			item.name = "blocky_"+i+"_"+j ;
+			item.color = blockyClass ;
+			item.pos = [i,j] ;
+			item.x = i * itemW ;
+			item.y = itemH * j ;
+			item.width = itemW - 1 ;
+			item.height = itemH - 1 ;
+			boardMc.addChild(item);
+			initBlocky(item);
+			//存入数组
+			_gamingData[i][j] = item ;
+			//重建时候删除pet
+			if(rebuild) item.removePet();
+			//保持border在最上边
+			boardMc.addChild(border) ;
+		}
 		/**
 		 * 初始化方块信息
 		 */
@@ -127,7 +141,7 @@
 		 */
 		private function mouseMoveHandler(evt : MouseEvent) : void 
 		{
-			trace("mouseMoveHandler : "  + evt.localX , evt.localY);
+			//trace("mouseMoveHandler : "  + evt.localX , evt.localY);
 			var tName : String = String(evt.target.name) ;
 			if(startDraw && tName.indexOf("blocky_") !=-1)
 			{

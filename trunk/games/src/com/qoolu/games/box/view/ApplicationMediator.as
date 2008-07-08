@@ -22,7 +22,7 @@
 		public static const NAME:String = 'ApplicationMediator';
 		 
 		private var levelDateProxy : LevelDataProxy ;
-		private var roleDataProxy : BlockyDataProxy ;
+		private var blockyDataProxy : BlockyDataProxy ;
 
 		/**
          * Constructor 
@@ -33,7 +33,7 @@
 			
 			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 			
-			roleDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
+			blockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
 			
 			initPreview();
 			
@@ -74,8 +74,8 @@
         {
             return [
             		 ApplicationFacade.START_GAME ,
-            		 ApplicationFacade.GAME_GUIDE
-            		];
+            		 ApplicationFacade.GAME_GUIDE ,
+            		 ];
         }
         
         
@@ -84,12 +84,13 @@
             switch (note.getName()) 
             {
                 case ApplicationFacade.START_GAME : 
-					trace(ApplicationFacade.START_GAME);
+					//trace(ApplicationFacade.START_GAME);
 					//var level:int = note.getBody() as int;
 					//trace(params);
 					var numOfRole : int = levelDateProxy.numOfRole() as int ;
                 	var numOfBox : Array = levelDateProxy.numOfBox();
-                	var roles: Array = roleDataProxy.rolesInCurrentLevel(numOfRole);
+                	var roles: Array = blockyDataProxy.rolesInCurrentLevel(numOfRole);
+                	blockyDataProxy.roles = roles ;
 					//var target : PreviewUI = note.getBody() as PreviewUI ;
 					//if(target.parent != null) main.removeChild(target) ;
 					if(main.preview != null && main.contains(main.preview)) main.removeChild(main.preview);
