@@ -23,6 +23,8 @@ package com.qoolu.games.box.model {
 		private var PINK : String = "PinkBlocky";
 		private var GREY : String = "GreyBlocky";
 		
+		private var  _blockyArray : Array ;
+		
 		public function BlockyDataProxy () 
 		{
 			super(NAME);
@@ -59,7 +61,20 @@ package com.qoolu.games.box.model {
 		 */
 		public function userSelect(start :Blocky , end : Blocky) : void
 		{
-				
+			trace("BlockyDataProxy : " + start.color,end.color);
+			trace(start.pos);
+			var startIndex : Array = [];	
+		}
+		/**
+		 * 当前游戏中的方块信息数据
+		 */
+		public function set blockyArray(arr : Array)  :void
+		{
+			_blockyArray = arr ; 
+		}
+		public function get blockyArray()  :Array 
+		{
+			return _blockyArray as Array;
 		}
 	}
 }
