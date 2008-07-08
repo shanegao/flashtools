@@ -86,7 +86,6 @@ package com.qoolu.games.box.model {
 					{
 						var item : Blocky = blockyArray[i][j] as Blocky ;
 						trace(i,j," select items : " + item.name);
-						if(item.hasPet) item.removePet();
 						sendNotification(ApplicationFacade.RE_DRAW , item);
 					}
 				}
