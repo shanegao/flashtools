@@ -1,11 +1,10 @@
-package com.qoolu.games.box.controller {
-	import com.qoolu.games.box.model.LevelDataProxy;	
-	
+package com.qoolu.games.box.controller 
+{
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import com.qoolu.games.box.ApplicationFacade;		
+	import com.qoolu.games.box.model.LevelDataProxy;		
 
 	/**
 	 * @author Gaoxian
@@ -20,7 +19,6 @@ package com.qoolu.games.box.controller {
 		{
 			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy;
 			levelData.levelAdd();//加1级
-			sendNotification(ApplicationFacade.RESTART_GAME, levelData.level);
 		}
 	}
 }

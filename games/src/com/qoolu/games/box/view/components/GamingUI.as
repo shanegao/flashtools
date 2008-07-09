@@ -1,4 +1,7 @@
 ﻿package com.qoolu.games.box.view.components {
+	import com.qoolu.games.box.ApplicationFacade;	
+	
+	import flash.text.TextFieldAutoSize;	
 	import flash.text.TextField;	
 	import flash.geom.Point;	
 	import flash.events.MouseEvent;	
@@ -17,9 +20,15 @@
 	{
 		public static const SELECTED : String = "userSelected..";
 		public static const BUILD_COMPLETE : String = "bulidComplete";
+		public static const GAME_OVER : String = "gameOver.....";
+		
+		private var borderColor :uint = 0xFFFFFF;
+		private var borderTS : int = 3 ;
+		
 		public var boardMc : MovieClip ;
 		public var scoreMc : MovieClip ;
 		public var cutdownMc : MovieClip ;
+		public var levelTxt : TextField ;
 		
 		private var cutdownTimer : CutdownTimer ;
 		private var startDraw : Boolean ;
@@ -55,8 +64,8 @@
 			var wNum : int = nums[0] as int ;
 			var hNum : int = nums[1] as int ;
 
-			itemW = Math.floor(boardMc.width / wNum);
-			itemH = Math.floor(boardMc.height / hNum); 
+			itemW = boardMc.width / wNum ;
+			itemH = boardMc.height / hNum ; 
 			_gamingData = [];			
 			for(var i : int = 0 ; i <wNum ; i++)
 			{
@@ -69,7 +78,10 @@
 			/**
 			 * 方块创建完成
 			 */
+			 
 			dispatchEvent(new Event(BUILD_COMPLETE)) ;
+			
+			cutdownTimer.start(ApplicationFacade.TIMER_REPEAT) ;
 		}
 		public function createBlocky(i : int , j : int): void
 		{	
@@ -131,7 +143,7 @@
 			var t : Blocky = evt.currentTarget as Blocky ;
 			_startBlocky = t ;
 			//
-			border.graphics.lineStyle(4,0xFF0000);
+			border.graphics.lineStyle(borderTS , borderColor);
 			border.graphics.drawRect(0, 0, t.width, t.height);
 			border.x = t.x + 1 ;
 			border.y = t.y + 1 ;
@@ -148,9 +160,7 @@
 			if(startDraw && tName.indexOf("blocky_") !=-1)
 			{
 				var t : Blocky = evt.target as Blocky ;
-				border.graphics.clear();
-				border.graphics.lineStyle(4,0xFF0000);
-				
+		
 				var startX : Number = 0;
 				var startY : Number = 0 ;
 				var borderW : Number = 0 ;
@@ -172,6 +182,8 @@
 					borderH= bool2 ? t.y+t.height-startPoint.y : startPoint.y + t.height -t.y ;
 				}
 				
+				border.graphics.clear();
+				border.graphics.lineStyle( borderTS , borderColor);
 				border.graphics.drawRect(0, 0, borderW, borderH );
 				border.x = startX ;
 				border.y = startY ;
@@ -184,6 +196,7 @@
 		 * @param nowX x坐标
 		 * @param nowY y坐标
 		 */
+		/**
 		private function findItemByPos(nowX:  Number , nowY : Number) : Blocky
 		{
 			 for(var i : int = 0 ; i< gamingData.length ;i++)
@@ -197,6 +210,8 @@
 			 }
 			 return null ;
 		}
+		 * 
+		 */
 		/**
 		 * 初始化界面
 		 */
@@ -205,7 +220,6 @@
 			cutdownTimer = new CutdownTimer(cutdownMc);
 			cutdownTimer.addEventListener(CutdownTimer.OVER, gameOver) ;
 			cutdownTimer.addEventListener(CutdownTimer.RUNNING, gameRunning) ;
-			cutdownTimer.start(10) ;
 		}
 		/**
 		 * 得分
@@ -214,6 +228,7 @@
 		{
 			var txt : TextField = scoreMc["scoreTxt"] as TextField ;
 			txt.text = value.toString();
+			txt.autoSize = TextFieldAutoSize.LEFT ;
 		}
 
 		/**
@@ -228,7 +243,7 @@
 		 */
 		private function gameOver(evt : Event)  :void
 		{
-			trace("gameOver======================");
+			dispatchEvent(new Event(GAME_OVER));
 		}
 		//
 		public function get gamingData() : Array 

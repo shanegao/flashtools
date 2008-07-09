@@ -1,4 +1,8 @@
 ﻿package com.qoolu.games.box.view {
+	import com.qoolu.games.box.view.components.GameOverUI;	
+	
+	import flash.display.Sprite;	
+	import flash.display.MovieClip;	
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -75,14 +79,20 @@
             return [
             		 ApplicationFacade.START_GAME ,
             		 ApplicationFacade.GAME_GUIDE ,
+            		 ApplicationFacade.GAME_OVER ,
+            		 ApplicationFacade.STARTUP ,
+            		 ApplicationFacade.RESTART_GAME
             		 ];
-        }
+		}
         
         
         override public function handleNotification( note : INotification ) : void 
         {
             switch (note.getName()) 
             {
+            	case ApplicationFacade.STARTUP : 
+            		main.addChild(main.preview);
+					break ;
                 case ApplicationFacade.START_GAME : 
 					//trace(ApplicationFacade.START_GAME);
 					//var level:int = note.getBody() as int;
@@ -93,21 +103,37 @@
                 	blockyDataProxy.roles = roles ;
 					//var target : PreviewUI = note.getBody() as PreviewUI ;
 					//if(target.parent != null) main.removeChild(target) ;
-					if(main.preview != null && main.contains(main.preview)) main.removeChild(main.preview);
-					var gaming : GamingUI = new GamingUI();
-					facade.registerMediator(new GamingUIMediator(gaming));
-					gaming.build(numOfBox ,roles );
-					main.addChild(gaming) ;
+					removeTargetInMain(main.preview);
+					removeTargetInMain(main.guideUI);
+					facade.registerMediator(new GamingUIMediator(main.gamingUI));
+					main.gamingUI.build(numOfBox ,roles );
+					main.addChild(main.gamingUI) ;
 					break ;
 				case ApplicationFacade.GAME_GUIDE :
 					trace("ApplicationFacade.GAME_GUIDE " + ApplicationFacade.GAME_GUIDE);	
-					var target : PreviewUI = note.getBody() as PreviewUI ;
-					if(target.parent != null) main.removeChild(target) ;
-					var guide  :GuideUI = GuideUI.getInstance() ;
-					main.addChild(guide) ;
-					guide.addEventListener(GuideUI.START, startGame) ;
+					removeTargetInMain(main.preview);
+					main.addChild(main.guideUI) ;
+					main.guideUI.addEventListener(GuideUI.START, startGame) ;
 					break ;
+				case ApplicationFacade.GAME_OVER : 
+					removeTargetInMain(main.gamingUI);
+					main.addChild(main.gameOverUI);
+					main.gameOverUI.showScore(note.getBody() as int) ;
+					main.gameOverUI.addEventListener(GameOverUI.SUBMIT, onSubmint) ;
+					break ;	
             }
         }
+        /**
+         * 把指定目标从主显示列表中删除
+         */
+        private function removeTargetInMain(tar : Sprite) : void 
+        {
+        	if(tar != null && main.contains(tar)) main.removeChild(tar);
+        }
+        
+        private function onSubmint(evt : Event)  :void
+        {
+        	main.addChild(main.preview);
+		}
 	}
 }

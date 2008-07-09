@@ -16,6 +16,7 @@ package com.qoolu.games.box.controller {
 		{
 			//facade.registerMediator()
 			trace("Game over @ GameOverCommand " );
+			
 		}
 	}
 }

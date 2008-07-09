@@ -20,6 +20,7 @@
 		public static const ADD_SCORE : String = "addScore";
 		
 		public static const RE_DRAW : String = "re_drew";
+		public static const TIMER_REPEAT :int = 180 ;
 		/**
          * Singleton ApplicationFacade Factory Method
          */

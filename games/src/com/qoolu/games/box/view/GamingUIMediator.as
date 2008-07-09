@@ -31,6 +31,7 @@ package com.qoolu.games.box.view {
 			
 			blockies.addEventListener(GamingUI.SELECTED, onUserSelect)	 ;
 			blockies.addEventListener(GamingUI.BUILD_COMPLETE, onBuildComplete) ;
+			blockies.addEventListener(GamingUI.GAME_OVER, onGameOver);
 		}
 		/**
 		 * 创建方块完成事件处理
@@ -49,6 +50,14 @@ package com.qoolu.games.box.view {
 			sendNotification(ApplicationFacade.USER_SELECT , [tar.startBlocky,tar.endBlocky]) ;
 		}
 		/**
+		 * 时间到，游戏结束
+		 */
+		private function onGameOver(evt : Event)  :void
+		{
+			sendNotification(ApplicationFacade.GAME_OVER,scoreData.totalScore);
+		}
+		
+		/**
 		 * 得到gamingUI
 		 */
 		public function get blockies() : GamingUI 
@@ -60,7 +69,7 @@ package com.qoolu.games.box.view {
         {
             return [
             		 ApplicationFacade.RE_DRAW ,
-            		 ApplicationFacade.RESTART_GAME ,
+            		 ApplicationFacade.UPGRADE ,
             		 ApplicationFacade.ADD_SCORE
             		 ];
 		}
@@ -76,14 +85,15 @@ package com.qoolu.games.box.view {
         			if(blocky.hasPet) blocky.removePet();
 					blockies.createBlocky(blocky.pos[0] , blocky.pos[1]);
         			break ;
-        		case ApplicationFacade.RESTART_GAME :
-        			var level : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
+        		case ApplicationFacade.UPGRADE :
+        			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 					var blockyData : BlockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
-					var numOfRole : int = level.numOfRole() as int ;
-            		var numOfBox : Array = level.numOfBox();
+					var numOfRole : int = levelData.numOfRole() as int ;
+            		var numOfBox : Array = levelData.numOfBox();
            	 		var roles: Array = blockyData.rolesInCurrentLevel(numOfRole);
             		blockyData.roles = roles ;
         			blockies.build(numOfBox, roles);
+        			blockies.levelTxt.text ="level: "+ levelData.level.toString() ;
         			trace("restart game ..........");
         			break ;	
         		case ApplicationFacade.ADD_SCORE : 
