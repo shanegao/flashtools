@@ -1,4 +1,7 @@
 ﻿package com.qoolu.games.box.view.components {
+	import flash.events.TimerEvent;	
+	import flash.utils.Timer;	
+	
 	import com.qoolu.games.box.ApplicationFacade;	
 	
 	import flash.text.TextFieldAutoSize;	
@@ -42,17 +45,26 @@
 		private var rolesArr :Array ;
 		private var itemW: Number = 0 ;
 		private var itemH: Number = 0 ;
+		
+		private var petTimer : Timer ;
+		private var intervalTime : int =0 ;
 		public function GamingUI()
 		{
 			trace("GamingUI created ! " + boardMc.name);
 			initUI();
+			intervalTime =  Math.floor(Math.random() * 5 + 5) *1000 ;
+			petTimer = new Timer(intervalTime);
+			petTimer.addEventListener(TimerEvent.TIMER, petSimle);
+			
 		}
+
 		/**
 		 * 创建方块
 		 */
 		public function build(nums : Array, roles:Array) : void
 		{
 			//trace(nums , roles);
+			
 			while(boardMc.numChildren > 1) 
 			{
 				trace("build " +boardMc.numChildren);
@@ -82,7 +94,13 @@
 			dispatchEvent(new Event(BUILD_COMPLETE)) ;
 			
 			cutdownTimer.start(ApplicationFacade.TIMER_REPEAT) ;
+			//
+			petTimer.reset();
+			petTimer.repeatCount = intervalTime ;
+			petTimer.start();
+			
 		}
+		
 		public function createBlocky(i : int , j : int): void
 		{	
 			var rebuild : Boolean = _gamingData[i][j] !=null ;
@@ -192,26 +210,29 @@
 			}
 		}
 		/**
-		 * 查找指定坐标内的blocky
+		 * 随机的时间内随机个数方块闪动
 		 * @param nowX x坐标
 		 * @param nowY y坐标
 		 */
-		/**
-		private function findItemByPos(nowX:  Number , nowY : Number) : Blocky
+		private function petSimle(evt : TimerEvent) : void
 		{
-			 for(var i : int = 0 ; i< gamingData.length ;i++)
+			var allPetArray : Array = [];
+			 for(var i : int = 0 ; i< _gamingData.length ;i++)
 			 {
-				for(var j : int = 0 ; j <gamingData[i].length ; i++)
+				for(var j : int = 0 ; j <_gamingData[i].length ; j++)
 				{
-					var item : Blocky = boardMc.getChildByName(gamingData[i][j] as String) as Blocky ;
-					if(item.x <= nowX && item.x +item.width >= nowX && item.y <= nowY && item.y +item.height >= nowY)
-					return item ;
-				 }
+					allPetArray.push(_gamingData[i][j] as Blocky );
+				}
 			 }
-			 return null ;
+			 //
+			if(allPetArray.length == 0) return  ;
+			var nums:  Number = Math.floor(Math.random() * 3 + 2) ;
+			while(nums -- >0)
+			{
+				var item : Blocky = allPetArray[Math.floor(Math.random() * allPetArray.length)] as Blocky ;
+				item.pet.play();
+			} 
 		}
-		 * 
-		 */
 		/**
 		 * 初始化界面
 		 */

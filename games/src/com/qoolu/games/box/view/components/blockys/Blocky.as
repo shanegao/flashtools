@@ -16,15 +16,15 @@
 		private var _color : String = "red";
 		private var _pos : Array ;
 		private var _hasPet : Boolean = true;
-		private var petTimer : Timer ;
+		//private var petTimer : Timer ;
 
 		public function Blocky()
 		{
 			pet.stop();
 			pet.addFrameScript(1 , frameScript);
-			petTimer = new Timer(Math.floor(Math.random() * 20 + 5) *1000 );
-			petTimer.addEventListener(TimerEvent.TIMER, onTimer);
-			petTimer.start();	
+			//petTimer = new Timer(Math.floor(Math.random() * 20 + 5) *1000 );
+			//petTimer.addEventListener(TimerEvent.TIMER, onTimer);
+			//petTimer.start();	
 		}
 		private function frameScript(): void
 		{
@@ -32,8 +32,8 @@
 		}
 		private function onTimer(evt : TimerEvent) : void
 		{
-			if(pet==null) petTimer.stop();
-			pet.play();
+			//if(pet==null) petTimer.stop();
+			//pet.play();
 		}
 		public function get info() : Array
 		{
