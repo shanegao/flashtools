@@ -74,6 +74,7 @@ package com.qoolu.games.box.model {
 			var bl : Blocky = blockyArray[s[0]][e[1]] as Blocky ;
 			trace(tl.color,tr.color,br.color,bl.color);
 			
+			var distroyNum : Number = 0 ;
 			if(tl.color == tr.color && tl.color == br.color && tl.color == bl.color)
 			{
 				var x1 : int = s[0] > e[0] ? e[0] : s[0] ;
@@ -86,10 +87,13 @@ package com.qoolu.games.box.model {
 					{
 						var item : Blocky = blockyArray[i][j] as Blocky ;
 						trace(i,j," select items : " + item.name);
+						if(item.hasPet) distroyNum++;
 						sendNotification(ApplicationFacade.RE_DRAW , item);
 					}
 				}
-				
+				trace("消除了。。。" + distroyNum + " 个方块笑脸 。。。");	
+				if(distroyNum ==0)	return;
+				sendNotification(ApplicationFacade.ADD_SCORE,[distroyNum,x2-x1,x4-x3]);
 				//检查是否全部消除
 				for(var m : int = 0 ; m< blockyArray.length ;m++)
 			 	{

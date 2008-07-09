@@ -1,4 +1,5 @@
 ﻿package com.qoolu.games.box {
+	import com.qoolu.games.box.controller.AddScoreCommand;	
 	import com.qoolu.games.box.controller.UserSelectCommand;	
 	
 	import org.puremvc.as3.interfaces.IFacade;
@@ -16,6 +17,7 @@
 		public static const GAME_OVER : String = "gameOVer"; 
 		public static const GAME_GUIDE : String = "gameGuide";
 		public static const USER_SELECT : String = "userSelect";
+		public static const ADD_SCORE : String = "addScore";
 		
 		public static const RE_DRAW : String = "re_drew";
 		/**
@@ -37,6 +39,7 @@
             registerCommand(UPGRADE, UpgradeCommand);
             registerCommand(GAME_OVER, GameOverCommand); 
             registerCommand(USER_SELECT, UserSelectCommand);
+            registerCommand(ADD_SCORE, AddScoreCommand);
 		}
         
         public function startup( main:Object ):void
