@@ -1,4 +1,5 @@
 ﻿package com.qoolu.games.box.view.components {
+	import flash.text.TextField;	
 	import flash.geom.Point;	
 	import flash.events.MouseEvent;	
 	import flash.display.Sprite;	
@@ -205,9 +206,16 @@
 			cutdownTimer.addEventListener(CutdownTimer.OVER, gameOver) ;
 			cutdownTimer.addEventListener(CutdownTimer.RUNNING, gameRunning) ;
 			cutdownTimer.start(10) ;
-			
-			
 		}
+		/**
+		 * 得分
+		 */
+		public function set score(value : int) :void 
+		{
+			var txt : TextField = scoreMc["scoreTxt"] as TextField ;
+			txt.text = value.toString();
+		}
+
 		/**
 		 * 游戏 中
 		 */

@@ -35,6 +35,7 @@ package com.qoolu.games.box.view.components {
 			//trace(skin.bgMc);
 			bgMc = skin["bgMc"];
 			precentMc = skin["precentMc"];
+			timer = new Timer(ONESECOND, totalTime);
 		}
 		/**
 		 * @param _totalTime second
@@ -43,13 +44,17 @@ package com.qoolu.games.box.view.components {
 		{
 			if(_totalTime == 0)return ;
 			nowTime = totalTime = _totalTime ;
-			if(timer != null) timer.stop();
-			timer = new Timer(ONESECOND, totalTime);
+			//if(timer != null) timer.stop();
+			timer.reset();
+			timer.repeatCount = _totalTime ;
+			timer.start();
 			timer.addEventListener(TimerEvent.TIMER, running);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, over);
 			timer.start();
 		}
-
+		/**
+		 * 计时中
+		 */
 		private function running (evt : TimerEvent) : void
 		{
 			dispatchEvent(new Event (RUNNING));
@@ -57,13 +62,17 @@ package com.qoolu.games.box.view.components {
 			precent = Math.round ((nowTime / totalTime) * 100);
 			if(precent <= 100 && precent >= 0)	update (precent);
 		}
-		
+		/**
+		 * 更新界面
+		 */
 		private function update (p : Number) : void
 		{
 			precentMc.x = bgMc.x + offsetX ;
 			precentMc.width = p * (bgMc.width - 2 * offsetX) / 100 ; 
 		}
-		
+		/**
+		 * 计时结束
+		 */
 		private function over(evt : TimerEvent) : void
 		{
 			dispatchEvent(new Event(OVER));

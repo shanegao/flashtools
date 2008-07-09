@@ -8,6 +8,7 @@ package com.qoolu.games.box.view {
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.model.LevelDataProxy;
+	import com.qoolu.games.box.model.ScoreDataProxy;
 	import com.qoolu.games.box.view.components.GamingUI;
 	import com.qoolu.games.box.view.components.blockys.Blocky;		
 
@@ -19,12 +20,14 @@ package com.qoolu.games.box.view {
 		public static const NAME : String = "GamingUIMediator";
 		
 		private var blockyData : BlockyDataProxy ;
+		private var scoreData : ScoreDataProxy ;
 
 		public function GamingUIMediator(viewComponent : Object) 
 		{
 			super(NAME, viewComponent);
 		
 			blockyData = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
+			scoreData  = facade.retrieveProxy(ScoreDataProxy.NAME) as ScoreDataProxy ;
 			
 			blockies.addEventListener(GamingUI.SELECTED, onUserSelect)	 ;
 			blockies.addEventListener(GamingUI.BUILD_COMPLETE, onBuildComplete) ;
@@ -57,7 +60,8 @@ package com.qoolu.games.box.view {
         {
             return [
             		 ApplicationFacade.RE_DRAW ,
-            		 ApplicationFacade.RESTART_GAME
+            		 ApplicationFacade.RESTART_GAME ,
+            		 ApplicationFacade.ADD_SCORE
             		 ];
 		}
         
@@ -81,6 +85,10 @@ package com.qoolu.games.box.view {
             		blockyData.roles = roles ;
         			blockies.build(numOfBox, roles);
         			trace("restart game ..........");
+        			break ;	
+        		case ApplicationFacade.ADD_SCORE : 
+        			blockies.score = scoreData.totalScore ;
+        			trace("GamingUIMediator : " + scoreData.totalScore);
         			break ;	
         	}
         }
