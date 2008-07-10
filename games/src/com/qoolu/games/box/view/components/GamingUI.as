@@ -269,8 +269,8 @@
 			//var ta : ScoreMovie = evt.target as ScoreMovie ;
 			
 			scoreMovie.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
+			if(scoreMovie == null || boardMc.contains(scoreMc)) return ;
 			boardMc.removeChild(scoreMovie);
-			
 			scoreMovie = null ;
 		}
 
