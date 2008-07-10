@@ -1,4 +1,6 @@
 package com.qoolu.games.box.view {
+	import com.qoolu.games.box.view.components.manager.SoundManager;	
+	
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -70,7 +72,9 @@ package com.qoolu.games.box.view {
             return [
             		 ApplicationFacade.RE_DRAW ,
             		 ApplicationFacade.UPGRADE ,
-            		 ApplicationFacade.ADD_SCORE
+            		 ApplicationFacade.ADD_SCORE,
+            		 ApplicationFacade.REMOVE_BLANK,
+            		 ApplicationFacade.REMOVE_FAIL
             		 ];
 		}
         
@@ -94,12 +98,19 @@ package com.qoolu.games.box.view {
             		blockyData.roles = roles ;
         			blockies.build(numOfBox, roles);
         			blockies.levelTxt.text ="level: "+ levelData.level.toString() ;
-        			trace("restart game ..........");
-        			break ;	
+        			//播放初始化声音
+					SoundManager.play(SoundManager.INIT_LEVEL);
+					break ;	
         		case ApplicationFacade.ADD_SCORE : 
         			blockies.score = scoreData.totalScore ;
-        			trace("GamingUIMediator : " + scoreData.totalScore);
-        			break ;	
+        			SoundManager.play(SoundManager.REMOVE_PET);
+					break ;	
+        		case ApplicationFacade.REMOVE_BLANK:
+        			SoundManager.play(SoundManager.REMOVE_BLANK);
+					break ;	
+        		case ApplicationFacade.REMOVE_FAIL :
+        			SoundManager.play(SoundManager.FAIL_REMOVE);
+					break ;	
         	}
         }
 	}
