@@ -48,6 +48,9 @@
 		
 		private var petTimer : Timer ;
 		private var intervalTime : int =0 ;
+		
+		//private var scoreMovie : ScoreMovie ;
+
 		public function GamingUI()
 		{
 			trace("GamingUI created ! " + boardMc.name);
@@ -253,6 +256,20 @@
 			var txt : TextField = scoreMc["scoreTxt"] as TextField ;
 			txt.text = value.toString();
 			txt.autoSize = TextFieldAutoSize.LEFT ;
+			//
+			var scoreMovie : ScoreMovie = new ScoreMovie();
+			scoreMovie.showScore(value);
+			scoreMovie.addEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
+			boardMc.addChild(scoreMovie);
+		}
+		private function onScoreMovieDistory(evt : Event) : void
+		{
+			var ta : ScoreMovie = evt.target as ScoreMovie ;
+			
+			ta.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
+			boardMc.removeChild(ta);
+			
+			ta = null ;
 		}
 
 		/**
