@@ -1,4 +1,5 @@
 ﻿package com.qoolu.games.box.view {
+	import com.qoolu.games.box.view.components.manager.SoundManager;	
 	import com.qoolu.games.box.view.components.GameOverUI;	
 	
 	import flash.display.Sprite;	
@@ -120,6 +121,7 @@
 					main.addChild(main.gameOverUI);
 					main.gameOverUI.showScore(note.getBody() as int) ;
 					main.gameOverUI.addEventListener(GameOverUI.SUBMIT, onSubmint) ;
+					SoundManager.play(SoundManager.GAME_OVER);
 					break ;	
             }
         }

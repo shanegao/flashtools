@@ -52,7 +52,7 @@
 		{
 			trace("GamingUI created ! " + boardMc.name);
 			initUI();
-			intervalTime =  Math.floor(Math.random() * 5 + 5) *1000 ;
+			intervalTime =  Math.floor(Math.random() * 5 + 2) *1000 ;
 			petTimer = new Timer(intervalTime);
 			petTimer.addEventListener(TimerEvent.TIMER, petSimle);
 			

@@ -92,7 +92,7 @@ package com.qoolu.games.box.model {
 					}
 				}
 				trace("消除了。。。" + distroyNum + " 个方块笑脸 。。。");	
-				if(distroyNum ==0)	return;
+				if(distroyNum ==0)	{sendNotification(ApplicationFacade.REMOVE_BLANK) ; return;}
 				sendNotification(ApplicationFacade.ADD_SCORE,[distroyNum,x2-x1,x4-x3]);
 				//检查是否全部消除
 				for(var m : int = 0 ; m< blockyArray.length ;m++)
@@ -104,9 +104,8 @@ package com.qoolu.games.box.model {
 					 }
 			 	}
 			 	sendNotification(ApplicationFacade.UPGRADE);
-				trace("全部消除la.....................");
-				
 			}
+			else sendNotification(ApplicationFacade.REMOVE_FAIL);
 		}
 		/**
 		 * 当前游戏中的方块信息数据

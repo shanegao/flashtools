@@ -18,7 +18,8 @@
 		public static const GAME_GUIDE : String = "gameGuide";
 		public static const USER_SELECT : String = "userSelect";
 		public static const ADD_SCORE : String = "addScore";
-		
+		public static const REMOVE_BLANK : String = "remove blank";
+		public static const REMOVE_FAIL : String = "remove fail" ; 
 		public static const RE_DRAW : String = "re_drew";
 		public static const TIMER_REPEAT :int = 180 ;
 		/**
