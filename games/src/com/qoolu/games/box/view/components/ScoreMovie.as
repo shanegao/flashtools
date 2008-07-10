@@ -38,7 +38,12 @@ package com.qoolu.games.box.view.components {
 		private function playOver() : void
 		{
 			trace("play over....................");
-			dispatchEvent(new Event(DISTROY))
+			for(var i :int =0 ; i < 10 ; i ++)
+			{
+				var item : MovieClip = this["num" + i] as MovieClip ;
+				item.stop();
+			}
+			dispatchEvent(new Event(DISTROY));
 		}
 		
 		public function showScore(score : int) : void
