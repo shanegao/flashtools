@@ -144,9 +144,12 @@
 			boardMc.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler) ;
 			removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler) ;
 			//当只选中一个,或者单行
-			if(startBlocky == endBlocky || startBlocky.pos[0] == endBlocky.pos[0]
+			if(endBlocky == null ||startBlocky == endBlocky || startBlocky.pos[0] == endBlocky.pos[0]
 			|| startBlocky.pos[1] == endBlocky.pos[1]) return ;
 			dispatchEvent(new Event(SELECTED)) ;
+			_startBlocky = null ;
+			_endBlocky = null ;
+			
 			//
 		}
 		/**
