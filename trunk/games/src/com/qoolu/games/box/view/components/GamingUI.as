@@ -50,6 +50,7 @@
 		private var intervalTime : int =0 ;
 		
 		private var scoreMovie : ScoreMovie ;
+		
 
 		public function GamingUI()
 		{
@@ -106,9 +107,9 @@
 		
 		public function createBlocky(i : int , j : int): void
 		{	
-			var rebuild : Boolean = _gamingData[i][j] !=null ;
-			if(_gamingData[i][j] !=null) boardMc.removeChild(_gamingData[i][j]);
-			
+			var target : Blocky = _gamingData[i][j] as Blocky ;
+			var rebuild : Boolean = target !=null ;
+			if(rebuild){var showEffect : Boolean = target.hasPet ; boardMc.removeChild(target);}
 			var blockyClass : String  = rolesArr[Math.floor(Math.random()* rolesArr.length)] as String; 
 			var item : Blocky = BlockyManager.createBlocky(blockyClass) as Blocky;
 			item.mouseChildren = false ;
@@ -125,6 +126,7 @@
 			_gamingData[i][j] = item ;
 			//重建时候删除pet
 			if(rebuild) item.removePet();
+			if(rebuild && showEffect) item.showEffect();
 			//保持border在最上边
 			boardMc.addChild(border) ;
 		}
@@ -165,6 +167,7 @@
 			//
 			startDraw = true ;
 			var t : Blocky = evt.currentTarget as Blocky ;
+			if(t.name.indexOf("blocky_") == -1) return ;
 			_startBlocky = t ;
 			//
 			border.graphics.lineStyle(borderTS , borderColor);
@@ -257,7 +260,10 @@
 			txt.text = value.toString();
 			txt.autoSize = TextFieldAutoSize.LEFT ;
 		}
-		public function set scoreThisTime(value) : void
+		/**
+		 * 本次得分
+		 */
+		public function set scoreThisTime(value : int) : void
 		{
 			scoreMovie = new ScoreMovie();
 			scoreMovie.showScore(value);
@@ -269,11 +275,11 @@
 		private function onScoreMovieDistory(evt : Event) : void
 		{
 			trace("onScoreMovieDistory9************************************");
-			dispatchEvent(new Event(SCORE_DESTROY));
-			scoreMovie.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
 			if(scoreMovie == null || !boardMc.contains(scoreMovie)) return ;
+			scoreMovie.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
 			boardMc.removeChild(scoreMovie);
 			scoreMovie = null ;
+			dispatchEvent(new Event(SCORE_DESTROY));
 		}
 		/**
 		 * 游戏 中

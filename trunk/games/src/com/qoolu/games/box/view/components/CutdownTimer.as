@@ -23,7 +23,7 @@ package com.qoolu.games.box.view.components {
 		private var precentMc : MovieClip ;
 		//private var labelMc :MovieClip ;
 		//
-		private var offsetX : Number = 5 ;
+		private var offsetX : Number = 4 ;
 		private var totalTime : Number = 0 ;
 		private static var timer : Timer ;
 		public var precent : Number = 0 ;
@@ -36,6 +36,7 @@ package com.qoolu.games.box.view.components {
 			bgMc = skin["bgMc"];
 			precentMc = skin["precentMc"];
 			timer = new Timer(ONESECOND, totalTime);
+			
 		}
 		/**
 		 * @param _totalTime second
@@ -43,6 +44,7 @@ package com.qoolu.games.box.view.components {
 		public function start (_totalTime : Number) : void
 		{
 			if(_totalTime == 0)return ;
+			update(100);
 			nowTime = totalTime = _totalTime ;
 			//if(timer != null) timer.stop();
 			timer.reset();
