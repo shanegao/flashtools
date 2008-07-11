@@ -1,9 +1,5 @@
 ﻿package com.qoolu.games.box.view {
-	import com.qoolu.games.box.view.components.manager.SoundManager;	
-	import com.qoolu.games.box.view.components.GameOverUI;	
-	
-	import flash.display.Sprite;	
-	import flash.display.MovieClip;	
+	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -14,9 +10,11 @@
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.model.LevelDataProxy;
+	import com.qoolu.games.box.view.components.GameOverUI;
 	import com.qoolu.games.box.view.components.GamingUI;
 	import com.qoolu.games.box.view.components.GuideUI;
-	import com.qoolu.games.box.view.components.PreviewUI;		
+	import com.qoolu.games.box.view.components.PreviewUI;
+	import com.qoolu.games.box.view.components.manager.SoundManager;		
 
 	/**
 	 * @author Gaoxian
@@ -98,17 +96,7 @@
 					//trace(ApplicationFacade.START_GAME);
 					//var level:int = note.getBody() as int;
 					//trace(params);
-					var numOfRole : int = levelDateProxy.numOfRole() as int ;
-                	var numOfBox : Array = levelDateProxy.numOfBox();
-                	var roles: Array = blockyDataProxy.rolesInCurrentLevel(numOfRole);
-                	blockyDataProxy.roles = roles ;
-					//var target : PreviewUI = note.getBody() as PreviewUI ;
-					//if(target.parent != null) main.removeChild(target) ;
-					removeTargetInMain(main.preview);
-					removeTargetInMain(main.guideUI);
-					facade.registerMediator(new GamingUIMediator(main.gamingUI));
-					main.gamingUI.build(numOfBox ,roles );
-					main.addChild(main.gamingUI) ;
+					startGameHandler();
 					break ;
 				case ApplicationFacade.GAME_GUIDE :
 					trace("ApplicationFacade.GAME_GUIDE " + ApplicationFacade.GAME_GUIDE);	
@@ -120,10 +108,30 @@
 					removeTargetInMain(main.gamingUI);
 					main.addChild(main.gameOverUI);
 					main.gameOverUI.showScore(note.getBody() as int) ;
-					main.gameOverUI.addEventListener(GameOverUI.SUBMIT, onSubmint) ;
+					main.gameOverUI.addEventListener(GameOverUI.SUBMIT, onSubmit) ;
 					SoundManager.play(SoundManager.GAME_OVER);
 					break ;	
+				case ApplicationFacade.RESTART_GAME : 
+					levelDateProxy.level = 1 ;
+					startGameHandler();
+					break ;	
             }
+        }
+        
+        private function startGameHandler() : void
+        {
+        	var numOfRole : int = levelDateProxy.numOfRole() as int ;
+            var numOfBox : Array = levelDateProxy.numOfBox();
+            var roles: Array = blockyDataProxy.rolesInCurrentLevel(numOfRole);
+            blockyDataProxy.roles = roles ;
+			//var target : PreviewUI = note.getBody() as PreviewUI ;
+			//if(target.parent != null) main.removeChild(target) ;
+			removeTargetInMain(main.preview);
+			removeTargetInMain(main.guideUI);
+			facade.registerMediator(new GamingUIMediator(main.gamingUI));
+			main.gamingUI.build(numOfBox ,roles );
+			main.addChild(main.gamingUI) ;
+			SoundManager.play(SoundManager.INIT_LEVEL);
         }
         /**
          * 把指定目标从主显示列表中删除
@@ -133,9 +141,9 @@
         	if(tar != null && main.contains(tar)) main.removeChild(tar);
         }
         
-        private function onSubmint(evt : Event)  :void
+        private function onSubmit(evt : Event)  :void
         {
-        	main.addChild(main.preview);
+        	sendNotification(ApplicationFacade.RESTART_GAME) ;
 		}
 	}
 }

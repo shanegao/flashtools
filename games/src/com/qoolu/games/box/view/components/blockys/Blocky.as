@@ -1,10 +1,8 @@
-﻿package com.qoolu.games.box.view.components.blockys {
-	import flash.events.TimerEvent;	
-	import flash.utils.Timer;	
+﻿package com.qoolu.games.box.view.components.blockys 
+{
 	import flash.display.MovieClip;	
 	import flash.display.Sprite;
-	
-	
+import flash.utils.getDefinitionByName;	
 	/**
 	 * @author Gaoxian
 	 * 方块基类
@@ -16,24 +14,17 @@
 		private var _color : String = "red";
 		private var _pos : Array ;
 		private var _hasPet : Boolean = true;
-		//private var petTimer : Timer ;
-
+		private var removeEffectClass : String = "RemoveEffect";
+		private var effect : MovieClip ;
+		
 		public function Blocky()
 		{
 			pet.stop();
 			pet.addFrameScript(1 , frameScript);
-			//petTimer = new Timer(Math.floor(Math.random() * 20 + 5) *1000 );
-			//petTimer.addEventListener(TimerEvent.TIMER, onTimer);
-			//petTimer.start();	
 		}
 		private function frameScript(): void
 		{
 			pet.stop();
-		}
-		private function onTimer(evt : TimerEvent) : void
-		{
-			//if(pet==null) petTimer.stop();
-			//pet.play();
 		}
 		public function get info() : Array
 		{
@@ -73,8 +64,27 @@
 		 */
 		public function removePet() : void
 		{
+			trace();
 			if(pet != null && contains(pet)) removeChild(pet) ;
 			_hasPet = false ;
+		}
+		/**
+		 * 删除时候带有动画效果
+		 */
+		public function showEffect() : void
+		{
+			var effectName : Class = getDefinitionByName(removeEffectClass) as Class ;
+			effect = new effectName() as MovieClip ;
+			effect.addFrameScript(effect.totalFrames - 1 ,remove);
+			effect.x = 24 ;
+			effect.y = 26 ;
+			addChild(effect);
+		}
+		
+		private function remove() : void 
+		{
+			effect.stop();
+			if(effect != null && contains(effect))removeChild(effect);
 		}
 	}
 	

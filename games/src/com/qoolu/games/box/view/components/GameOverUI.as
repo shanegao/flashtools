@@ -29,8 +29,11 @@ package com.qoolu.games.box.view.components {
 		
 		public function showScore(value : int) : void
 		{
-			scoreTxt.text = value.toString();
+			scoreTxt.text = value.toString()+"(" + Math.floor(value*.04)+ "贝壳)";
 			scoreTxt.autoSize = TextFieldAutoSize.LEFT ;
+			
+			//
+			
 		}
 	}
 }
