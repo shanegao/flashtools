@@ -10,7 +10,8 @@
 	{
 		public static const NAME : String = "ScoreDataProxy";
 		
-		private var _totalScore : int = 0 ;		
+		private var _totalScore : int = 0 ;	
+		private var _scoreOfThisTime : int  =0 ;	
 		public function ScoreDataProxy() 
 		{
 			super( NAME );
@@ -41,11 +42,17 @@
     	 */
     	public function addScore(distroyNum : int ,numW : int , numH :int) : void
     	{
-    		_totalScore += distroyNum  * scoreOfItem(numW , numH) ;
+    		_scoreOfThisTime = distroyNum  * scoreOfItem(numW , numH) ;
+    		_totalScore += _scoreOfThisTime ;
     	}
     	/**
     	 * getter
     	 */
+    	public function get scoreOfThisTime() : int
+    	{
+    		return _scoreOfThisTime ;
+    	} 
+    	
 		public function get totalScore() : int
 		{
 			return _totalScore;

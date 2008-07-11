@@ -6,12 +6,13 @@
 	import org.puremvc.as3.patterns.facade.Facade;
 	import com.qoolu.games.box.controller.GameOverCommand;
 	import com.qoolu.games.box.controller.StartupCommand;
-	import com.qoolu.games.box.controller.UpgradeCommand;		
+	import com.qoolu.games.box.controller.CheckUpgradeCommand;		
 
 	public class ApplicationFacade extends Facade implements IFacade
     {
         public static const STARTUP : String  		= "startup";
         public static const UPGRADE : String 	= "upgrade";
+        public static const CHECK_UPGRADE : String = "checkupgrade";
 		public static const START_GAME : String		= "start_game";
 		public static const RESTART_GAME : String = "restart_game";
 		public static const GAME_OVER : String = "gameOVer"; 
@@ -38,7 +39,7 @@
         {
             super.initializeController();            
             registerCommand(STARTUP, StartupCommand );
-            registerCommand(UPGRADE, UpgradeCommand);
+            registerCommand(CHECK_UPGRADE, CheckUpgradeCommand);
             registerCommand(GAME_OVER, GameOverCommand); 
             registerCommand(USER_SELECT, UserSelectCommand);
             registerCommand(ADD_SCORE, AddScoreCommand);

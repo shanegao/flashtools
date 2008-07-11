@@ -1,46 +1,22 @@
-package com.qoolu.games.box.view.components {
+package com.qoolu.games.box.view.components
+{
+	import flash.display.Sprite;	
 	import flash.events.Event;	
 	import flash.display.MovieClip;
-	
+	import flash.utils.getDefinitionByName;	
 	/**
-	 * @author Administrator
+	 * @author Gaoxian
 	 */
-	public class ScoreMovie extends MovieClip 
+	public class ScoreMovie extends Sprite 
 	{
-		public var num0 : MovieClip ;
-		public var num1 : MovieClip ;
-		public var num2 : MovieClip ;
-		public var num3 : MovieClip ;
-		public var num4 : MovieClip ;
-		public var num5 : MovieClip ;
-		public var num6 : MovieClip ;
-		public var num7 : MovieClip ;
-		public var num8 : MovieClip ;
-		public var num9 : MovieClip ;
-		
-		public static const DISTROY : String = "";
-		public function ScoreMovie() 
-		{
-			allInvisible();
-		}
-		
-		private function allInvisible() : void
-		{
-			for(var i :int =0 ; i < 10 ; i ++)
-			{
-				var item : MovieClip = this["num" + i] as MovieClip ;
-				item.x = 0 ;
-				item.y = 0 ;
-				item.visible = false ;
-			}
-		}
-		
+		public static const DISTROY : String = "distroy";
 		private function playOver() : void
 		{
 			trace("play over....................");
-			for(var i :int =0 ; i < 10 ; i ++)
+			
+			for(var i :int =0 ; i < numChildren ; i++)
 			{
-				var item : MovieClip = this["num" + i] as MovieClip ;
+				var item : MovieClip = this.getChildAt(i) as MovieClip ;
 				item.stop();
 			}
 			dispatchEvent(new Event(DISTROY));
@@ -51,10 +27,12 @@ package com.qoolu.games.box.view.components {
 			var s : String = score.toString();
 			for(var i : int =0 ; i < s.length ; i++)
 			{
-				var item : MovieClip = this["num" + s.charAt(i)] as MovieClip ; 
+				var className : Class = getDefinitionByName("Num" + s.charAt(i)) as Class ; 
+				var item : MovieClip = new className() as MovieClip ;
+				item.name = "num" + s.charAt(i);
 				item.addFrameScript(item.totalFrames-1 , playOver);
-				item.visible = true ;
 				item.x = 36 * i;
+				addChild(item);
 			}
 		}
 	}

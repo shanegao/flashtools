@@ -34,6 +34,13 @@ package com.qoolu.games.box.view {
 			blockies.addEventListener(GamingUI.SELECTED, onUserSelect)	 ;
 			blockies.addEventListener(GamingUI.BUILD_COMPLETE, onBuildComplete) ;
 			blockies.addEventListener(GamingUI.GAME_OVER, onGameOver);
+			blockies.addEventListener(GamingUI.SCORE_DESTROY, onDestroy) ;
+		}
+		
+		private function onDestroy(evt : Event)  :void
+		{
+			trace("^^^^^^^^^^^^^^^^^^0");
+			sendNotification(ApplicationFacade.CHECK_UPGRADE);
 		}
 		/**
 		 * 创建方块完成事件处理
@@ -103,14 +110,15 @@ package com.qoolu.games.box.view {
 					break ;	
         		case ApplicationFacade.ADD_SCORE : 
         			blockies.score = scoreData.totalScore ;
-        			SoundManager.play(SoundManager.REMOVE_PET);
+        			blockies.scoreThisTime = scoreData.scoreOfThisTime ;
+					SoundManager.play(SoundManager.REMOVE_PET);
 					break ;	
         		case ApplicationFacade.REMOVE_BLANK:
         			SoundManager.play(SoundManager.REMOVE_BLANK);
 					break ;	
         		case ApplicationFacade.REMOVE_FAIL :
         			SoundManager.play(SoundManager.FAIL_REMOVE);
-					break ;	
+					break ;
         	}
         }
 	}
