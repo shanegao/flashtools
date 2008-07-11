@@ -94,19 +94,22 @@ package com.qoolu.games.box.model {
 				trace("消除了。。。" + distroyNum + " 个方块笑脸 。。。");	
 				if(distroyNum ==0)	{sendNotification(ApplicationFacade.REMOVE_BLANK) ; return;}
 				sendNotification(ApplicationFacade.ADD_SCORE,[distroyNum,x2-x1,x4-x3]);
-				//检查是否全部消除
-				for(var m : int = 0 ; m< blockyArray.length ;m++)
-			 	{
-					for(var n : int = 0 ; n <blockyArray[m].length ; n++)
-					{
-						var blocky : Blocky = blockyArray[m][n] as Blocky ;
-						if(blocky.hasPet) return ;
-					 }
-			 	}
-			 	sendNotification(ApplicationFacade.UPGRADE);
 			}
 			else sendNotification(ApplicationFacade.REMOVE_FAIL);
 		}
+		//检查是否全部消除
+		public function checkOver() : Boolean 
+		{
+			for(var m : int = 0 ; m< blockyArray.length ;m++)
+			{
+				for(var n : int = 0 ; n <blockyArray[m].length ; n++)
+				{
+					var blocky : Blocky = blockyArray[m][n] as Blocky ;
+					if(blocky.hasPet) return false;
+				 }
+			}
+			return true ;
+		}		
 		/**
 		 * 当前游戏中的方块信息数据
 		 */

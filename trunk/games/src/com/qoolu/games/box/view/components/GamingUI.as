@@ -24,7 +24,7 @@
 		public static const SELECTED : String = "userSelected..";
 		public static const BUILD_COMPLETE : String = "bulidComplete";
 		public static const GAME_OVER : String = "gameOver.....";
-		
+		public static const SCORE_DESTROY : String = "scoreDestroy";
 		private var borderColor :uint = 0xFFFFFF;
 		private var borderTS : int = 3 ;
 		
@@ -256,7 +256,9 @@
 			var txt : TextField = scoreMc["scoreTxt"] as TextField ;
 			txt.text = value.toString();
 			txt.autoSize = TextFieldAutoSize.LEFT ;
-			//
+		}
+		public function set scoreThisTime(value) : void
+		{
 			scoreMovie = new ScoreMovie();
 			scoreMovie.showScore(value);
 			scoreMovie.x = (boardMc.width - scoreMovie.width)/2;
@@ -266,14 +268,13 @@
 		}
 		private function onScoreMovieDistory(evt : Event) : void
 		{
-			//var ta : ScoreMovie = evt.target as ScoreMovie ;
-			
+			trace("onScoreMovieDistory9************************************");
+			dispatchEvent(new Event(SCORE_DESTROY));
 			scoreMovie.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
-			if(scoreMovie == null || boardMc.contains(scoreMc)) return ;
+			if(scoreMovie == null || !boardMc.contains(scoreMovie)) return ;
 			boardMc.removeChild(scoreMovie);
 			scoreMovie = null ;
 		}
-
 		/**
 		 * 游戏 中
 		 */
