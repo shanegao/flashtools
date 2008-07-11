@@ -27,29 +27,36 @@
 		 public function numOfBox() : Array
 		 {
 		 	if(_level == 1) return [5 , 5] ;
-		 	if(_level == 2) return [8 , 8] ;
-		 	if(_level == 3) return [10 ,10] ;
-		 	if(_level == 4) return [12 , 12] ;
-		 	if(_level > 4) return [16 , 16];
+		 	if(_level == 2) return [6 , 6] ;
+		 	if(_level == 3) return [7 ,7] ;
+		 	if(_level == 4) return [8 , 8] ;
+		 	if(_level == 5) return [9 , 9] ;
+		 	if(_level == 6) return [10 , 10] ;
+		 	if(_level == 7) return [11 ,11] ;
+		 	if(_level == 8) return [12 , 12] ;
+		 	if(_level == 9) return [13 , 13] ;
+		 	if(_level == 10) return [14 , 14] ;
+		 	if(_level == 11) return [15 ,15] ;
+		 	if(_level >= 12) return [16 , 16] ;
 		 	return [5,5];
 		 }
 		/**
-		 * 第一关两种颜色
-			第二关两种颜色
-			第三关三种颜色
-			第四关四种颜色
-			第五关五种颜色
-			第六关六种颜色
-			此后均为八种颜色
+		第一关两种颜色
+		第二关两种颜色
+		第三关三种颜色
+		第4关四种颜色
+		第8关五种颜色
+		第12关六种颜色
+		此后均为八种颜色
 		 */ 
 		public function numOfRole() : int
 		{
 			if(_level == 1 || _level == 2) return 2 ;
 			if(_level == 3) return 3 ;
-			if(_level == 4) return 4 ;
-			if(_level == 5) return 5 ;
-			if(_level == 6) return 6 ;
-			if(_level > 6) return 8 ;
+			if(_level >= 4 && _level < 8) return 4 ;
+			if(_level >= 8 && _level < 12) return 5 ;
+			if(_level == 12) return 6 ;
+			if(_level > 12) return 8 ;
 			return 2 ;
     	}
     	/**
