@@ -22,7 +22,7 @@
 		public static const REMOVE_BLANK : String = "remove blank";
 		public static const REMOVE_FAIL : String = "remove fail" ; 
 		public static const RE_DRAW : String = "re_drew";
-		public static const TIMER_REPEAT :int = 180 ;
+		public static const TIMER_REPEAT :int = 10 ;
 		/**
          * Singleton ApplicationFacade Factory Method
          */
