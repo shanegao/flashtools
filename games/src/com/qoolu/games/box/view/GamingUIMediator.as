@@ -23,13 +23,15 @@ package com.qoolu.games.box.view {
 		
 		private var blockyData : BlockyDataProxy ;
 		private var scoreData : ScoreDataProxy ;
-
+		private var levelData : LevelDataProxy ;
+		
 		public function GamingUIMediator(viewComponent : Object) 
 		{
 			super(NAME, viewComponent);
 		
 			blockyData = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
 			scoreData  = facade.retrieveProxy(ScoreDataProxy.NAME) as ScoreDataProxy ;
+			levelData = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
 			
 			blockies.addEventListener(GamingUI.SELECTED, onUserSelect)	 ;
 			blockies.addEventListener(GamingUI.BUILD_COMPLETE, onBuildComplete) ;
@@ -81,8 +83,9 @@ package com.qoolu.games.box.view {
             		 ApplicationFacade.UPGRADE ,
             		 ApplicationFacade.ADD_SCORE,
             		 ApplicationFacade.REMOVE_BLANK,
-            		 ApplicationFacade.REMOVE_FAIL
-            		 ];
+            		 ApplicationFacade.REMOVE_FAIL ,
+            		 ApplicationFacade.RESTART_GAME
+            		];
 		}
         
         
@@ -90,6 +93,11 @@ package com.qoolu.games.box.view {
         {
         	switch(note.getName())
         	{
+        		case ApplicationFacade.RESTART_GAME:
+        			blockies.score = scoreData.totalScore = 0;	
+        			levelData.level = 1 ;
+        			blockies.levelTxt.text ="level: "+ levelData.level.toString() ;				
+        			break ;
         		case ApplicationFacade.RE_DRAW : 
         			trace("re draw.......................") ;
         			var blocky : Blocky = note.getBody() as Blocky ;
@@ -97,8 +105,7 @@ package com.qoolu.games.box.view {
 					blockies.createBlocky(blocky.pos[0] , blocky.pos[1]);
         			break ;
         		case ApplicationFacade.UPGRADE :
-        			var levelData : LevelDataProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
-					var blockyData : BlockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
+        		
 					var numOfRole : int = levelData.numOfRole() as int ;
             		var numOfBox : Array = levelData.numOfBox();
            	 		var roles: Array = blockyData.rolesInCurrentLevel(numOfRole);
