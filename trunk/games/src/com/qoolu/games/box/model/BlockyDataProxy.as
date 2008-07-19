@@ -65,6 +65,7 @@ package com.qoolu.games.box.model {
 		{
 			trace("BlockyDataProxy : " + start.color,end.color);
 			trace(start.pos , end.pos);
+			if(start ==null || end == null) return ;
 			var s : Array = start.pos as Array ;
 			var e : Array = end.pos as Array ;
 			
