@@ -1,11 +1,10 @@
 package com.qoolu.games.box.controller {
-	import com.qoolu.games.box.ApplicationFacade;	
-	import com.qoolu.games.box.model.BlockyDataProxy;	
+	import org.puremvc.as3.multicore.interfaces.ICommand;
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.patterns.command.SimpleCommand;
 	
-	import org.puremvc.as3.interfaces.ICommand;
-	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.command.SimpleCommand;
-	
+	import com.qoolu.games.box.ApplicationFacade;
+	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.model.LevelDataProxy;		
 
 	/**

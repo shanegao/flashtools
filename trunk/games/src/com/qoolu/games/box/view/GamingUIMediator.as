@@ -1,18 +1,17 @@
 package com.qoolu.games.box.view {
-	import com.qoolu.games.box.view.components.manager.SoundManager;	
-	
 	import flash.events.Event;
 	
-	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.puremvc.as3.multicore.interfaces.IMediator;
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 	
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.BlockyDataProxy;
 	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.ScoreDataProxy;
 	import com.qoolu.games.box.view.components.GamingUI;
-	import com.qoolu.games.box.view.components.blockys.Blocky;		
+	import com.qoolu.games.box.view.components.blockys.Blocky;
+	import com.qoolu.games.box.view.components.manager.SoundManager;		
 
 	/**
 	 * @author Gaoxian
@@ -28,7 +27,12 @@ package com.qoolu.games.box.view {
 		public function GamingUIMediator(viewComponent : Object) 
 		{
 			super(NAME, viewComponent);
-		
+		}
+		/**
+		 * override
+		 */
+		override public function onRegister() : void 
+		{
 			blockyData = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
 			scoreData  = facade.retrieveProxy(ScoreDataProxy.NAME) as ScoreDataProxy ;
 			levelData = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
@@ -38,10 +42,10 @@ package com.qoolu.games.box.view {
 			blockies.addEventListener(GamingUI.GAME_OVER, onGameOver);
 			blockies.addEventListener(GamingUI.SCORE_DESTROY, onDestroy) ;
 		}
-		
+
+		//override public function on
 		private function onDestroy(evt : Event)  :void
 		{
-			trace("^^^^^^^^^^^^^^^^^^0");
 			sendNotification(ApplicationFacade.CHECK_UPGRADE);
 		}
 		/**
