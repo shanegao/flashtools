@@ -1,12 +1,12 @@
 ﻿package com.qoolu.games.box {
-	import com.qoolu.games.box.controller.AddScoreCommand;	
-	import com.qoolu.games.box.controller.UserSelectCommand;	
+	import org.puremvc.as3.multicore.interfaces.IFacade;
+	import org.puremvc.as3.multicore.patterns.facade.Facade;
 	
-	import org.puremvc.as3.interfaces.IFacade;
-	import org.puremvc.as3.patterns.facade.Facade;
+	import com.qoolu.games.box.controller.AddScoreCommand;
+	import com.qoolu.games.box.controller.CheckUpgradeCommand;
 	import com.qoolu.games.box.controller.GameOverCommand;
 	import com.qoolu.games.box.controller.StartupCommand;
-	import com.qoolu.games.box.controller.CheckUpgradeCommand;		
+	import com.qoolu.games.box.controller.UserSelectCommand;		
 
 	public class ApplicationFacade extends Facade implements IFacade
     {
@@ -23,26 +23,34 @@
 		public static const REMOVE_FAIL : String = "remove fail" ; 
 		public static const RE_DRAW : String = "re_drew";
 		public static const TIMER_REPEAT :int = 180 ;
-		/**
-         * Singleton ApplicationFacade Factory Method
-         */
-        public static function getInstance() : ApplicationFacade 
+         
+        public function ApplicationFacade( key:String )
         {
-            if ( instance == null ) instance = new ApplicationFacade( );
-            return instance as ApplicationFacade;
+            super(key);    
         }
 
+        /**
+         * ApplicationFacade Factory Method
+         */
+        public static function getInstance( key:String ) : ApplicationFacade 
+        {
+            if ( instanceMap[ key ] == null ) instanceMap[ key ]  = new ApplicationFacade( key );
+            return instanceMap[ key ] as ApplicationFacade;
+        }
+        
         /**
          * Register Commands with the Controller 
          */
         override protected function initializeController() : void 
         {
-            super.initializeController();            
+            super.initializeController(); 
+                     
             registerCommand(STARTUP, StartupCommand );
             registerCommand(CHECK_UPGRADE, CheckUpgradeCommand);
             registerCommand(GAME_OVER, GameOverCommand); 
             registerCommand(USER_SELECT, UserSelectCommand);
             registerCommand(ADD_SCORE, AddScoreCommand);
+            trace("oooooooooooooooooooooooooooooooooooooo");  
 		}
         
         public function startup( main:Object ):void

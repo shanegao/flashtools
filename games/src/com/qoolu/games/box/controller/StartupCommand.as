@@ -1,13 +1,12 @@
 ﻿package com.qoolu.games.box.controller {
-	import org.puremvc.as3.interfaces.ICommand;
-	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.command.SimpleCommand;
-	import org.puremvc.as3.patterns.observer.Notifier;
+	import org.puremvc.as3.multicore.interfaces.ICommand;
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.patterns.command.SimpleCommand;
 	
-	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.BlockyDataProxy;
+	import com.qoolu.games.box.model.LevelDataProxy;
 	import com.qoolu.games.box.model.ScoreDataProxy;
-	import com.qoolu.games.box.view.ApplicationMediator;		
+	import com.qoolu.games.box.view.ApplicationMediator;	
 
 	/**
 	 * @author Gaoxian
@@ -20,12 +19,10 @@
 		 */
         override public function execute( note:INotification ) : void    
         {
-			//
 			var main : BoxMain = note.getBody() as BoxMain ;
 			facade.registerProxy(new LevelDataProxy()) ;
 			facade.registerProxy(new BlockyDataProxy()) ;
 			facade.registerProxy(new ScoreDataProxy()) ;
-			//
 			//note
 			facade.registerMediator(new ApplicationMediator(main));
 			//facade.removeMediator(ApplicationMediator.NAME);

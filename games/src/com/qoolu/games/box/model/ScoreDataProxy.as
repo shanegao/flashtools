@@ -1,7 +1,7 @@
 ﻿package com.qoolu.games.box.model {
-	import org.puremvc.as3.patterns.proxy.Proxy;
-	import org.puremvc.as3.interfaces.IProxy;
-	
+	import org.puremvc.as3.multicore.interfaces.IProxy;
+	import org.puremvc.as3.multicore.patterns.proxy.Proxy;	
+
 	/**
 	 * 得分数据
 	 * @author Gaoxian

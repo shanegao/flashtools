@@ -1,9 +1,8 @@
 package {
-	import com.qoolu.games.box.view.components.GameOverUI;	
-	
 	import flash.display.MovieClip;
 	
 	import com.qoolu.games.box.ApplicationFacade;
+	import com.qoolu.games.box.view.components.GameOverUI;
 	import com.qoolu.games.box.view.components.GamingUI;
 	import com.qoolu.games.box.view.components.GuideUI;
 	import com.qoolu.games.box.view.components.PreviewUI;		
@@ -21,8 +20,7 @@ package {
 			gamingUI = new GamingUI();
 			guideUI = new GuideUI();
 			gameOverUI = new GameOverUI();
-			//
-			ApplicationFacade.getInstance().startup( this );
+			ApplicationFacade.getInstance("blocky").startup(this) ;
 		}
 	}
 }

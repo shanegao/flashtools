@@ -54,7 +54,7 @@
 
 		public function GamingUI()
 		{
-			trace("GamingUI created ! " + boardMc.name);
+			//trace("GamingUI created ! " + boardMc.name);
 			initUI();
 			intervalTime =  Math.floor(Math.random() * 5 + 2) *1000 ;
 			petTimer = new Timer(intervalTime);
@@ -71,7 +71,7 @@
 			
 			while(boardMc.numChildren > 1) 
 			{
-				trace("build " +boardMc.numChildren);
+				//trace("build " +boardMc.numChildren);
 				boardMc.removeChildAt(boardMc.numChildren - 1) ;
 			}
 			
@@ -274,7 +274,7 @@
 		}
 		private function onScoreMovieDistory(evt : Event) : void
 		{
-			trace("onScoreMovieDistory9************************************");
+			//trace("onScoreMovieDistory9************************************");
 			if(scoreMovie == null || !boardMc.contains(scoreMovie)) return ;
 			scoreMovie.removeEventListener(ScoreMovie.DISTROY, onScoreMovieDistory);
 			boardMc.removeChild(scoreMovie);

@@ -1,10 +1,9 @@
 package com.qoolu.games.box.model {
-	import com.qoolu.games.box.ApplicationFacade;	
+	import org.puremvc.as3.multicore.interfaces.IProxy;
+	import org.puremvc.as3.multicore.patterns.proxy.Proxy;
 	
-	import org.puremvc.as3.interfaces.IProxy;
-	import org.puremvc.as3.patterns.proxy.Proxy;
-	
-	import com.qoolu.games.box.view.components.blockys.Blocky;		
+	import com.qoolu.games.box.ApplicationFacade;
+	import com.qoolu.games.box.view.components.blockys.Blocky;	
 
 	/**
 	 * 角色数据

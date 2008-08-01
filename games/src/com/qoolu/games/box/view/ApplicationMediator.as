@@ -2,10 +2,9 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;
-	import org.puremvc.as3.patterns.observer.Notifier;
+	import org.puremvc.as3.multicore.interfaces.IMediator;
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 	
 	import com.qoolu.games.box.ApplicationFacade;
 	import com.qoolu.games.box.model.BlockyDataProxy;
@@ -14,7 +13,7 @@
 	import com.qoolu.games.box.view.components.GamingUI;
 	import com.qoolu.games.box.view.components.GuideUI;
 	import com.qoolu.games.box.view.components.PreviewUI;
-	import com.qoolu.games.box.view.components.manager.SoundManager;		
+	import com.qoolu.games.box.view.components.manager.SoundManager;	
 
 	/**
 	 * @author Gaoxian
@@ -33,19 +32,15 @@
 		public function ApplicationMediator(viewComponent : Object) 
 		{
 			super(NAME , viewComponent);
-			
-			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
-			
-			blockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
-			
-			initPreview();
-			
+			//initPreview();
 		}
 		/**
 		 * 添加preview侦听
 		 */
-		private function initPreview() : void
+		override public function onRegister():void
 		{
+			levelDateProxy = facade.retrieveProxy(LevelDataProxy.NAME) as LevelDataProxy ;
+			blockyDataProxy = facade.retrieveProxy(BlockyDataProxy.NAME) as BlockyDataProxy ;
 			main.preview.addEventListener(PreviewUI.START, startGame) ;
 			main.preview.addEventListener(PreviewUI.GUIDE, gameGuide) ;
 		}
@@ -54,8 +49,6 @@
 		 */
 		private function startGame(evt : Event) : void 
 		{
-			trace("startgame");
-			
 			sendNotification(ApplicationFacade.START_GAME , levelDateProxy.level);
 		}
 		/**
