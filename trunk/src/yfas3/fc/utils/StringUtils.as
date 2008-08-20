@@ -10,6 +10,26 @@
 		 * 替换字符串中的一些子字符串
 		 * @author adobe
 		 */
+		function formatTime(minitime : Number) : String
+		{
+			if (minitime >= 0)
+			{
+				var d : Number = Math.floor(offsetTime/60/60/24);
+				offsetTime %= 60*60*24;
+				var h : Number = Math.floor(offsetTime/60/60);
+				offsetTime %= 60*60;
+				var m :Number = Math.floor(offsetTime/60);
+				var s : Number = offsetTime%60;
+			}
+		}
+		/**
+		 *转换
+		 */	
+		function digiNumber(num:Number):String 
+		{
+			return String(num).length < 2?"0" + String(num):String(num);
+		}
+		
 		public static function replace(input:String, replace:String, replaceWith:String):String
 		{
 			//change to StringBuilder
