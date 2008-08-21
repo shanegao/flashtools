@@ -1,6 +1,6 @@
-package fc.carousel.controller 
+package fc.puremvc.controller 
 {
-	import org.puremvc.as3.patterns.command.MacroCommand;	
+	import org.puremvc.as3.patterns.command.MacroCommand;		
 
 	public class StartupCommand extends MacroCommand
 	{

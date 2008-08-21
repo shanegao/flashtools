@@ -1,9 +1,9 @@
-package fc.carousel {
-	import fc.carousel.controller.StartupCommand;	
-	
-	import org.puremvc.as3.patterns.facade.Facade;
+package fc.puremvc {
 	import org.puremvc.as3.interfaces.IFacade;
+	import org.puremvc.as3.patterns.facade.Facade;
 	
+	import fc.puremvc.controller.StartupCommand;		
+
 	/**
 	 * @author GaoXian
 	 */

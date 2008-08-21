@@ -1,4 +1,4 @@
-package fc.carousel.model {
+package fc.puremvc.model {
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;	
 
