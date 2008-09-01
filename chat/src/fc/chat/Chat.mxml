@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:components="fc.chat.components.*" 
+	width="100%" height="100%"
+	layout="vertical">
+	
+	<mx:Script>
+		<![CDATA[
+			//import model.ApplicationModel;
+			import mx.collections.ArrayCollection;
+			import mx.utils.UIDUtil;
+		
+			private var nc:NetConnection;
+			
+			private var userUID:String = UIDUtil.createUID();
+			
+			[Bindable]
+			private var dp:ArrayCollection;
+			private var userid : String ; 
+			
+			private var selectedUser : Object ;
+   			private function doConnect() : void
+    		{
+       			//A NetConnection is the pipe between Flex/Air and Flash Media Server
+    			nc = new NetConnection();
+    			
+    			//The NetConnection has a client property to refer to an object or class 
+    			//which you assign all of the server callbacks to.
+    			nc.client = this;
+    			
+    			//The NetStatusEvent is a dispatched status event for 
+    			//NetConnection, NetStream, or SharedObject.
+    			//We want to know if the NetConnection has properly connected
+				nc.addEventListener( NetStatusEvent.NET_STATUS, handlerOnNetStatus );
+				
+    			//Connect to the location of your flash media server for example:
+    			//nc.connect("rtmp://fmsexamples.adobe.com/applicationName/instance");
+    			tracePanel.writeln(userUID) ;
+    			userid = "user"+Math.floor(Math.random()*100) ;
+				nc.connect( "rtmp://localhost/textchat/" ,userid );
+    		}
+			
+        	/**
+        	 * 	This is the handler function of the NetStatusEvent for the NetConnection.  
+        	 * 	Here is where we can find out the connection status and execute actions 
+        	 * 	based on each result. 
+        	 */
+			private function handlerOnNetStatus( event:NetStatusEvent ) : void
+			{
+				var info:Object = event.info;
+    			
+    			//Checking the event.info.code for the current NetConnection status string
+    			switch(info.code) 
+                {
+                	//code == NetConnection.Connect.Success when Netconnection has successfully
+            		//connected
+                	case "NetConnection.Connect.Success":	
+    					tracePanel.writeln( "Connection Successful" );
+    					
+    					btnConnect.selected = true;
+            			break;
+            		
+            		//code == NetConnection.Connect.Rejected when Netconnection did
+        			//not have permission to access the application.	
+					case "NetConnection.Connect.Rejected":
+            			tracePanel.writeln( "Connection Rejected" );
+            			
+            			btnConnect.selected = false;	
+            			break;
+            		
+            		//code == NetConnection.Connect.Failed when Netconnection has failed to connect
+            		//either because your network connection is down or the server address doesn't exist.	
+            		case "NetConnection.Connect.Failed":
+            			tracePanel.writeln( "Connection Failed" );	
+            			
+            			btnConnect.selected = false;
+            			break;
+            		
+            		//code == NetConnection.Connect.Closed when Netconnection has been closed successfully.		
+            		case "NetConnection.Connect.Closed":
+            			tracePanel.writeln( "Connection Closed" );	
+            			
+            			btnConnect.selected = false;
+            			break;
+                }
+			}
+			
+			private function doDisconnect() : void
+			{
+				//close the netconnection and reset the visual interface
+				nc.close();
+				
+				btnConnect.selected = false;
+				
+			}
+			
+			private function doAction() : void
+			{
+				//Depending on the selected state of btnConnect either
+				//connect to the video stream or disconnect from it.
+				if ( btnConnect.selected )
+				{
+					doConnect();
+				}
+				else
+				{
+					doDisconnect();
+				}
+			}
+			
+			private function sendText() : void
+			{
+				if(inputTxt.text == "") return ;
+				var str : String = inputTxt.text ;
+				if(selectedUser == null)nc.call("broadcastAll",null,userid + ":" + str);
+				else nc.call("privateTalk" , null , selectedUser , str);
+				inputTxt.text = ""; 
+			}
+			//
+			public function clientTrace(msg : Object , user : Object = null) : void
+			{
+				tracePanel.writeln(msg.toString());
+				if(user == null)return ; onUserEnterRoom(user);
+			}
+			//
+    		public function close() : void
+    		{
+    			tracePanel.writeln( 'Connection closed.' );
+    		}	
+    		
+    		private function onUserEnterRoom(userVO : Object) : void
+    		{
+    			if(u1.label == "LinkButton")u1.label = userVO.toString() ;
+    			else if(u2.label == "LinkButton")u2.label = userVO.toString() ;
+    		}
+			
+			
+			private function selectUser(evt : Event) : void
+			{
+				var t : LinkButton = evt.target as LinkButton ;
+				trace(t.label);
+				if(t.label != "LinkButton") selectedUser = t.label ;
+				
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:ApplicationControlBar
+		width="100%" height="50">
+		
+		<!-- the button used to connect and disconnect from FMS depending on 
+			it's selected status.  -->
+		<mx:Button
+			id="btnConnect"
+			label="{btnConnect.selected?'Disconnect':'Connect'}"
+			toolTip="{btnConnect.selected?'Disconnect':'Connect'}"
+			toggle="true"
+			styleName="connectDisconnectButton"
+			click="doAction()"/>
+		
+	</mx:ApplicationControlBar>	
+	<!--The output panel for all the traced actions performed-->
+	<components:TracePanel
+		id="tracePanel"
+		width="100%" height="100%"/>
+	<mx:HBox width="100%">
+		<mx:TextInput id="inputTxt"  width="506"/>
+		<mx:Button 
+				id="btnSend" 
+				label="Send" 
+				click="sendText()"/>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<mx:LinkButton label="LinkButton" id="u1" click="selectUser(event)"/>
+		<mx:LinkButton label="LinkButton" id="u2" click="selectUser(event)"/>
+	</mx:HBox>
+	
+</mx:Application>

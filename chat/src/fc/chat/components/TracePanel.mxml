@@ -10,7 +10,7 @@
 			import mx.managers.PopUpManager;
 			import mx.events.FlexEvent;
 			
-			import fc.textchat.components.*;
+			import fc.chat.components.*;
 			
 			private var popoutBtn:Button;
 			
