@@ -1,5 +1,7 @@
 ﻿package fc.utils 
 {
+	import fc.errors.Errors;
+	
 	
 	/**
 	 * @author GaoXian
@@ -7,29 +9,34 @@
 	public class StringUtils 
 	{
 		/**
-		 * 替换字符串中的一些子字符串
-		 * @author adobe
+		 * @param minisecond
 		 */
-		function formatTime(minitime : Number) : String
+		public static function formatTime(minisecond : Number) : String
 		{
-			if (minitime >= 0)
+			if (minisecond >= 0)
 			{
-				var d : Number = Math.floor(offsetTime/60/60/24);
-				offsetTime %= 60*60*24;
-				var h : Number = Math.floor(offsetTime/60/60);
-				offsetTime %= 60*60;
-				var m :Number = Math.floor(offsetTime/60);
-				var s : Number = offsetTime%60;
+				//var d : Number = Math.floor(minisecond/60/60/24);
+				//minisecond %= 60*60*24;
+				//var h : Number = Math.floor(minisecond/60/60);
+				//minisecond %= 60*60;
+				var m :Number = Math.floor(minisecond/60);
+				var s : Number = minisecond%60;
+				return digiNumber(m , 2) + ":" + digiNumber(s ,2 );
 			}
+			return Errors.paramIsInvalid ;
 		}
 		/**
 		 *转换
 		 */	
-		function digiNumber(num:Number):String 
+		public static function digiNumber(num:Number , len : int):String 
 		{
-			return String(num).length < 2?"0" + String(num):String(num);
+			return String(num).length < len?"0" + String(num):String(num);
 		}
 		
+		/**
+		 * 替换字符串中的一些子字符串
+		 * @author adobe
+		 */
 		public static function replace(input:String, replace:String, replaceWith:String):String
 		{
 			//change to StringBuilder
