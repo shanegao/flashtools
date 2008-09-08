@@ -5,7 +5,7 @@ package fc.controls
 	 * 窗口
 	 * @author GaoXian
 	 */
-	public class Window extends UIComponent
+	public class Window extends UIOjbect
 	{
 		public var bgMc : Sprite ;
 		
