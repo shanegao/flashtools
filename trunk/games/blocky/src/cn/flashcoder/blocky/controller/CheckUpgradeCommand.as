@@ -1,11 +1,14 @@
-package com.qoolu.games.box.controller {
+package cn.flashcoder.blocky.controller 
+{
+	
+	import cn.flashcoder.blocky.ApplicationFacade;
+	import cn.flashcoder.blocky.model.BlockyDataProxy;
+	import cn.flashcoder.blocky.model.LevelDataProxy;
+	
 	import org.puremvc.as3.multicore.interfaces.ICommand;
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.patterns.command.SimpleCommand;
 	
-	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.model.BlockyDataProxy;
-	import com.qoolu.games.box.model.LevelDataProxy;		
 
 	/**
 	 * @author Gaoxian

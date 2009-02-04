@@ -1,4 +1,4 @@
-package com.qoolu.games.box.view.components
+package cn.flashcoder.blocky.view.components
 {
 	import flash.display.Sprite;	
 	import flash.events.Event;	

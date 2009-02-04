@@ -1,4 +1,5 @@
-package com.qoolu.games.box.view.components.manager {
+package cn.flashcoder.blocky.view.components.manager 
+{
 	import flash.media.Sound;	
 	import flash.utils.getDefinitionByName;	
 	/**

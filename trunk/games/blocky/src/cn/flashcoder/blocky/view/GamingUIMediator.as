@@ -1,17 +1,18 @@
-package com.qoolu.games.box.view {
+package cn.flashcoder.blocky.view 
+{
+	import cn.flashcoder.blocky.ApplicationFacade;
+	import cn.flashcoder.blocky.model.BlockyDataProxy;
+	import cn.flashcoder.blocky.model.LevelDataProxy;
+	import cn.flashcoder.blocky.model.ScoreDataProxy;
+	import cn.flashcoder.blocky.view.components.GamingUI;
+	import cn.flashcoder.blocky.view.components.blockys.Blocky;
+	import cn.flashcoder.blocky.view.components.manager.SoundManager;
+	
 	import flash.events.Event;
 	
 	import org.puremvc.as3.multicore.interfaces.IMediator;
 	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.patterns.mediator.Mediator;
-	
-	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.model.BlockyDataProxy;
-	import com.qoolu.games.box.model.LevelDataProxy;
-	import com.qoolu.games.box.model.ScoreDataProxy;
-	import com.qoolu.games.box.view.components.GamingUI;
-	import com.qoolu.games.box.view.components.blockys.Blocky;
-	import com.qoolu.games.box.view.components.manager.SoundManager;		
+	import org.puremvc.as3.multicore.patterns.mediator.Mediator;		
 
 	/**
 	 * @author Gaoxian

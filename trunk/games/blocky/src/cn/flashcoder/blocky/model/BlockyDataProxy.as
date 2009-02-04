@@ -1,9 +1,10 @@
-package com.qoolu.games.box.model {
-	import org.puremvc.as3.multicore.interfaces.IProxy;
-	import org.puremvc.as3.multicore.patterns.proxy.Proxy;
+package cn.flashcoder.blocky.model 
+{
+	import cn.flashcoder.blocky.ApplicationFacade;
+	import cn.flashcoder.blocky.view.components.blockys.Blocky;
 	
-	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.view.components.blockys.Blocky;	
+	import org.puremvc.as3.multicore.interfaces.IProxy;
+	import org.puremvc.as3.multicore.patterns.proxy.Proxy;	
 
 	/**
 	 * 角色数据

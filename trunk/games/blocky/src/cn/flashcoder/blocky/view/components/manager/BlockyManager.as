@@ -1,7 +1,8 @@
-package com.qoolu.games.box.view.components.manager {
-	import flash.utils.getDefinitionByName;
+package cn.flashcoder.blocky.view.components.manager 
+{
+	import cn.flashcoder.blocky.view.components.blockys.Blocky;
 	
-	import com.qoolu.games.box.view.components.blockys.Blocky;		
+	import flash.utils.getDefinitionByName;		
 
 	/**
 	 * @author Gaoxian
