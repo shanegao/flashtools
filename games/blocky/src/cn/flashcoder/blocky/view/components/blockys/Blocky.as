@@ -1,4 +1,4 @@
-﻿package com.qoolu.games.box.view.components.blockys 
+﻿package cn.flashcoder.blocky.view.components.blockys 
 {
 	import flash.display.MovieClip;	
 	import flash.display.Sprite;

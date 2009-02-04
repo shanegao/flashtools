@@ -1,19 +1,18 @@
-﻿package com.qoolu.games.box.view.components {
-	import flash.events.TimerEvent;	
-	import flash.utils.Timer;	
+﻿package cn.flashcoder.blocky.view.components 
+{
+	import cn.flashcoder.blocky.ApplicationFacade;
+	import cn.flashcoder.blocky.view.components.blockys.Blocky;
+	import cn.flashcoder.blocky.view.components.manager.BlockyManager;
 	
-	import com.qoolu.games.box.ApplicationFacade;	
-	
-	import flash.text.TextFieldAutoSize;	
-	import flash.text.TextField;	
-	import flash.geom.Point;	
-	import flash.events.MouseEvent;	
-	import flash.display.Sprite;	
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.Event;
-	
-	import com.qoolu.games.box.view.components.blockys.Blocky;
-	import com.qoolu.games.box.view.components.manager.BlockyManager;		
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.geom.Point;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.utils.Timer;		
 
 	/**
 	 * @author Gaoxian

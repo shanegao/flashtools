@@ -1,12 +1,13 @@
 package {
+	import cn.flashcoder.blocky.ApplicationFacade;
+	import cn.flashcoder.blocky.view.components.GameOverUI;
+	import cn.flashcoder.blocky.view.components.GamingUI;
+	import cn.flashcoder.blocky.view.components.GuideUI;
+	import cn.flashcoder.blocky.view.components.PreviewUI;
+	
 	import flash.display.MovieClip;
 	
-	import com.qoolu.games.box.ApplicationFacade;
-	import com.qoolu.games.box.view.components.GameOverUI;
-	import com.qoolu.games.box.view.components.GamingUI;
-	import com.qoolu.games.box.view.components.GuideUI;
-	import com.qoolu.games.box.view.components.PreviewUI;		
-
+	
 	public class BoxMain extends MovieClip
 	{
 		public var preview : PreviewUI ;

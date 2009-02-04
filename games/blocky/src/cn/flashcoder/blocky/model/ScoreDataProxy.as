@@ -1,4 +1,5 @@
-﻿package com.qoolu.games.box.model {
+﻿package cn.flashcoder.blocky.model
+{
 	import org.puremvc.as3.multicore.interfaces.IProxy;
 	import org.puremvc.as3.multicore.patterns.proxy.Proxy;	
 

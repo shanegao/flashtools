@@ -1,4 +1,5 @@
-package com.qoolu.games.box.view.components {
+package cn.flashcoder.blocky.view.components 
+{
 	import flash.events.EventDispatcher;	
 	import flash.events.Event;	
 	import flash.events.TimerEvent;	

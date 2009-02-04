@@ -1,4 +1,5 @@
-package com.qoolu.games.box.controller {
+package cn.flashcoder.blocky.controller 
+{
 	import org.puremvc.as3.multicore.interfaces.ICommand;
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.patterns.command.SimpleCommand;		

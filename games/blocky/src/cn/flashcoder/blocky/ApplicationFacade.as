@@ -1,12 +1,15 @@
-﻿package com.qoolu.games.box {
-	import org.puremvc.as3.multicore.interfaces.IFacade;
-	import org.puremvc.as3.multicore.patterns.facade.Facade;
+﻿package cn.flashcoder.blocky 
+{
 	
-	import com.qoolu.games.box.controller.AddScoreCommand;
-	import com.qoolu.games.box.controller.CheckUpgradeCommand;
-	import com.qoolu.games.box.controller.GameOverCommand;
-	import com.qoolu.games.box.controller.StartupCommand;
-	import com.qoolu.games.box.controller.UserSelectCommand;		
+	
+	import cn.flashcoder.blocky.controller.AddScoreCommand;
+	import cn.flashcoder.blocky.controller.CheckUpgradeCommand;
+	import cn.flashcoder.blocky.controller.GameOverCommand;
+	import cn.flashcoder.blocky.controller.StartupCommand;
+	import cn.flashcoder.blocky.controller.UserSelectCommand;
+	
+	import org.puremvc.as3.multicore.interfaces.IFacade;
+	import org.puremvc.as3.multicore.patterns.facade.Facade;		
 
 	public class ApplicationFacade extends Facade implements IFacade
     {
